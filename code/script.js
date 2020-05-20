@@ -10,7 +10,7 @@ const showMessage = (message, sender) => {
   if (sender === 'user') {
     chat.innerHTML += `
       <section class="user-msg">
-        <div class="bubble user-bubble" id="user">
+        <div class="bubble user-bubble">
           <p>${message}</p>
         </div>
         <img src="assets/user.png" alt="User" />  
@@ -21,7 +21,7 @@ const showMessage = (message, sender) => {
       <section class="bot-msg">
         <img src="assets/bot.png" alt="Bot" />
         <div class="bubble bot-bubble">
-          <p id="bot">${message}</p>
+          <p>${message}</p>
         </div>
       </section>
     `
