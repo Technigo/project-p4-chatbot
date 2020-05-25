@@ -1,9 +1,30 @@
 // All the DOM selectors stored as short variables
 const chat = document.getElementById('chat')
+const send = document.getElementById('send')
+const userInput = document.getElementById('input').value
+
 
 // Global variables, if you need any, declared here
+let currentQuestion = 0
 
 // Functions declared here
+
+const showUserInput = () => {
+  const userInput = document.getElementById('input').value
+  showMessage(userInput, 'user')
+  nextQuestion(userInput)
+}
+
+const nextStep = () => {
+  // Vad ska göras härnäst?
+}
+
+const nextQuestion = (userInput) => {
+  // if userinput är detta och currentquestion har detta nummer,
+  // gör då detta, dvs if question 1 && userInput ===, do this etc.
+  showMessage(`Hello ${userInput}! What would you like to do?`, 'bot')
+
+}
 
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
@@ -32,11 +53,12 @@ const showMessage = (message, sender) => {
 
 // Starts here
 const greeting = () => {
-  showMessage(`Hello there, What's your name?`, 'bot')
+  showMessage(`Welcome! Please enter your full name.`, 'bot')
   // Just to check it out, change 'bot' to 'user' here 👆
 }
 
 // Set up your eventlisteners here
+send.addEventListener("click", showUserInput)
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
