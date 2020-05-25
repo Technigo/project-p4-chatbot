@@ -33,7 +33,8 @@ const createButtons = () => {
   document.getElementById('input-wrapper').appendChild(btnNurse)
   btnNurse.addEventListener("click", displayChoiceNurse)
 
-  displayHide()
+  send.remove()
+//   displayHide()
 }
 
 const displayHide = () => {
@@ -61,24 +62,22 @@ const thirdQuestion = () => {
   btnSubmit.addEventListener("click", showInputPhoneNumber)
 }
 
-// Se till att telnr går att submitta, sedan slutmeddelande. Fixa ev att 
-// det en har submittat kommer upp i en pratbubbla.
-
 const showInputPhoneNumber = () => {
   const inputValue = document.getElementById('input').value
   showMessage(inputValue, 'user')
+  lastMessage()
 }
 
-const fourthQuestion = () => {
-
+const lastMessage = () => {
+  showMessage('Thank you! We will call you within two hours.', 'bot')
 }
 
-const displayShow = () => {
-  send.style.visibility = "visible";
-}
+// const displayShow = () => {
+//   send.style.visibility = "visible";
+// }
 
 const nextStep = () => {
-  // Vad ska göras härnäst?
+  // What to do next.
 }
 
 // This function will add a chat bubble in the correct place based on who the sender is
@@ -114,8 +113,6 @@ const greeting = () => {
 
 // Set up your eventlisteners here
 send.addEventListener("click", showInputName)
-
-
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
