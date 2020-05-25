@@ -1,37 +1,80 @@
 // All the DOM selectors stored as short variables
 const chat = document.getElementById('chat')
 const send = document.getElementById('send')
-const userInput = document.getElementById('input').value
-
+const inputValue = document.getElementById('input').value
+const btnBook = document.createElement("button")
+const btnNurse = document.createElement("button")
 
 // Global variables, if you need any, declared here
 let currentQuestion = 0
 
 // Functions declared here
-
-const showUserInput = () => {
-  const userInput = document.getElementById('input').value
-  showMessage(userInput, 'user')
-  nextQuestion(userInput)
+const showInputName = () => {
+  const inputValue = document.getElementById('input').value
+  showMessage(inputValue, 'user')
+  secondQuestion(inputValue)
 }
 
-const nextQuestion = (userInput) => {
+const secondQuestion = (inputValue) => {
   // if userinput är detta och currentquestion har detta nummer,
   // gör då detta, dvs if question 1 && userInput ===, do this etc.
-  showMessage(`Hello ${userInput}! What would you like to do?`, 'bot')
+  showMessage(`Hello ${inputValue}! What would you like to do?`, 'bot')
   createButtons()
 }
 
 const createButtons = () => {
-  let btnBook = document.createElement("BUTTON")
+  var btnBook = document.createElement("button")
   btnBook.innerHTML = "Book appointment"
   document.getElementById('input-wrapper').appendChild(btnBook)
+  btnBook.addEventListener("click", displayChoiceBook)
 
-  let btnNurse = document.createElement("BUTTON")
+  var btnNurse = document.createElement("button")
   btnNurse.innerHTML = "Talk to a nurse"
   document.getElementById('input-wrapper').appendChild(btnNurse)
+  btnNurse.addEventListener("click", displayChoiceNurse)
 
+  displayHide()
+}
+
+const displayHide = () => {
+  send.style.visibility = "hidden";
+}
+
+const displayChoiceBook = () => {
+  showMessage('Book an appointment', 'user')
+  thirdQuestion()
+}
+
+const displayChoiceNurse = () => {
+  showMessage('Talk to a nurse', 'user')
+  thirdQuestion()
+}
+
+const thirdQuestion = () => {
+  showMessage('Please enter your phone number.', 'bot')
+  // btnBook.parentNode.removeChild(btnBook);
   
+  // displayShow()
+  let btnSubmit = document.createElement("button")
+  btnSubmit.innerHTML = "Submit"
+  document.getElementById('input-wrapper').appendChild(btnSubmit)
+  btnSubmit.addEventListener("click", showInputPhoneNumber)
+}
+
+// Se till att telnr går att submitta, sedan slutmeddelande. Fixa ev att 
+// det en har submittat kommer upp i en pratbubbla.
+
+const showInputPhoneNumber = () => {
+  const inputValue = document.getElementById('input').value
+  showMessage(inputValue, 'user')
+}
+
+const fourthQuestion = () => {
+
+}
+
+const displayShow = () => {
+  send.style.visibility = "visible";
 }
 
 const nextStep = () => {
@@ -70,7 +113,9 @@ const greeting = () => {
 }
 
 // Set up your eventlisteners here
-send.addEventListener("click", showUserInput)
+send.addEventListener("click", showInputName)
+
+
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
