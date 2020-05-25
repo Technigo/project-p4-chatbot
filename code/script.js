@@ -6,7 +6,7 @@ const btnBook = document.createElement("button")
 const btnNurse = document.createElement("button")
 
 // Global variables, if you need any, declared here
-let currentQuestion = 0
+// let currentQuestion = 0
 
 // Functions declared here
 const showInputName = () => {
@@ -16,8 +16,8 @@ const showInputName = () => {
 }
 
 const secondQuestion = (inputValue) => {
-  // if userinput är detta och currentquestion har detta nummer,
-  // gör då detta, dvs if question 1 && userInput ===, do this etc.
+  // if userinput is this and currentquestion has this number,
+  // do this, dvs if question 1 && userInput === x, do this etc.
   showMessage(`Hello ${inputValue}! What would you like to do?`, 'bot')
   createButtons()
 }
@@ -32,14 +32,17 @@ const createButtons = () => {
   btnNurse.innerHTML = "Talk to a nurse"
   document.getElementById('input-wrapper').appendChild(btnNurse)
   btnNurse.addEventListener("click", displayChoiceNurse)
-
   send.remove()
-//   displayHide()
+  // displayHide()
 }
 
-const displayHide = () => {
-  send.style.visibility = "hidden";
-}
+// const displayHide = () => {
+//   send.style.visibility = "hidden";
+// }
+
+// const displayShow = () => {
+//   send.style.visibility = "visible";
+// }
 
 const displayChoiceBook = () => {
   showMessage('Book an appointment', 'user')
@@ -52,10 +55,7 @@ const displayChoiceNurse = () => {
 }
 
 const thirdQuestion = () => {
-  showMessage('Please enter your phone number.', 'bot')
-  // btnBook.parentNode.removeChild(btnBook);
-  
-  // displayShow()
+  showMessage('Please enter your phone number.', 'bot') 
   let btnSubmit = document.createElement("button")
   btnSubmit.innerHTML = "Submit"
   document.getElementById('input-wrapper').appendChild(btnSubmit)
@@ -71,10 +71,6 @@ const showInputPhoneNumber = () => {
 const lastMessage = () => {
   showMessage('Thank you! We will call you within two hours.', 'bot')
 }
-
-// const displayShow = () => {
-//   send.style.visibility = "visible";
-// }
 
 const nextStep = () => {
   // What to do next.
