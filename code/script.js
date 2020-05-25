@@ -15,15 +15,27 @@ const showUserInput = () => {
   nextQuestion(userInput)
 }
 
-const nextStep = () => {
-  // Vad ska göras härnäst?
-}
-
 const nextQuestion = (userInput) => {
   // if userinput är detta och currentquestion har detta nummer,
   // gör då detta, dvs if question 1 && userInput ===, do this etc.
   showMessage(`Hello ${userInput}! What would you like to do?`, 'bot')
+  createButtons()
+}
 
+const createButtons = () => {
+  let btnBook = document.createElement("BUTTON")
+  btnBook.innerHTML = "Book appointment"
+  document.getElementById('input-wrapper').appendChild(btnBook)
+
+  let btnNurse = document.createElement("BUTTON")
+  btnNurse.innerHTML = "Talk to a nurse"
+  document.getElementById('input-wrapper').appendChild(btnNurse)
+
+  
+}
+
+const nextStep = () => {
+  // Vad ska göras härnäst?
 }
 
 // This function will add a chat bubble in the correct place based on who the sender is
