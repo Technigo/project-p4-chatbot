@@ -114,6 +114,11 @@ main {
   justify-content: center;
 }
 
+.input-wrapper form {
+  width: 100%;
+  display: flex;
+}
+
 button {
   background-color: #0026ff;
   color: white;
