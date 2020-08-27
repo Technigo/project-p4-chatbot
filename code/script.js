@@ -1,11 +1,30 @@
-// All the DOM selectors stored as short variables
+const vegetarian = "Vegetarian Pizza"
+const hawaiian = "Hawaiian Pizza"
+const pepperoni = "Pepperoni Pizza"
+
+const pizzaPrice = 80
+
+let clientName = ''
+let orderName = ''
+let orderQuantity = ''
+let orderTotal = ''
+let cookingTime = ''
+
 const chat = document.getElementById('chat')
+const inputWrapper = document.getElementById('input-wrapper')
+const nameInput = document.getElementById('name-input')
+const sendBtn = document.getElementById('send')
 
-// Global variables, if you need any, declared here
+let questionNumber = 1
 
-// Functions declared here
+const botReply = (msg) => {
+  showMessage(msg, 'bot')
+}
 
-// This function will add a chat bubble in the correct place based on who the sender is
+const userReply = (msg) => {
+  showMessage(msg, 'user')
+}
+
 const showMessage = (message, sender) => {
   if (sender === 'user') {
     chat.innerHTML += `
@@ -26,22 +45,122 @@ const showMessage = (message, sender) => {
       </section>
     `
   }
-  // This little thing makes the chat scroll to the last message when there are too many to be shown in the chat box
   chat.scrollTop = chat.scrollHeight
+}
+
+const nextQuestion = (message) => {
+  console.log('questionNumber', questionNumber)
+
+  if (questionNumber === 1) {
+    userReply(message)
+    nameInput.value = ''
+    setTimeout(() => showFoodTypes(message), 1000)
+  } else if (questionNumber === 2) {
+    userReply(message)
+    setTimeout(() => showMenu(message), 1000)
+  } else if (questionNumber === 3) {
+    userReply(message)
+    setTimeout(() => showDishSize(message), 1000)
+  } else if (questionNumber === 4) {
+    userReply(message)
+    setTimeout(() => showPrice(message), 1000)
+  } else {
+    userReply(message)
+    setTimeout(thankYou, 1000)
+  }
 }
 
 // Starts here
 const greeting = () => {
-  showMessage(`Hello there, What's your name?`, 'bot')
-  // Just to check it out, change 'bot' to 'user' here 👆
+  questionNumber = 1
+  botReply(`Hello there, What's your name?`)
 }
 
-// Set up your eventlisteners here
+const showFoodTypes = (msg) => {
+  clientName = msg
+  questionNumber++
+  botReply(
+    `Nice to meet you ${msg}. What type of pizza would you like to order?`
+  )
 
-// When website loaded, chatbot asks first question.
-// normally we would invoke a function like this:
-// greeting()
-// But if we want to add a little delay to it, we can wrap it in a setTimeout:
-// setTimeout(functionName, timeToWaitInMilliSeconds)
-// This means the greeting function will be called one second after the website is loaded.
+  inputWrapper.innerHTML = `
+    <button id="vegetarianBtn">${vegetarian}</button>
+    <button id="hawaiianBtn">${hawaiian}</button>
+    <button id="pepperoniBtn">${pepperoni}</button>
+  `
+
+  document
+    .getElementById('vegetarianBtn')
+    .addEventListener('click', () => nextQuestion(vegetarian))
+  document
+    .getElementById('hawaiianBtn')
+    .addEventListener('click', () => nextQuestion(hawaiian))
+  document
+    .getElementById('pepperoniBtn')
+    .addEventListener('click', () => nextQuestion(pepperoni))
+}
+
+const showMenu = (type) => {
+  questionNumber++
+
+  orderName = type
+
+  botReply(
+    `Oh so you're in the mood for ${type}? Great choice. How many would you like to order?`
+  )
+  inputWrapper.innerHTML = `
+  <input id="order-quantity" type="number"/>
+  <button id="send-order-btn" class="send">Send</button>
+  `
+  orderQuantity = document.getElementById('order-quantity')
+
+  document.getElementById("send-order-btn").addEventListener('click', () => {
+    if (orderQuantity.value < 1) {
+      botReply(
+        `You can't order ${orderQuantity.value} pizzas, silly!`
+      )
+    } else if (orderQuantity.value > 10) {
+      botReply(
+        `You can only order 10 pizzas at a time at this popular pizzeria`
+      )
+    } else {
+      nextQuestion(orderQuantity.value)
+    }
+  })
+
+}
+
+const showDishSize = (dish) => {
+  questionNumber++
+
+  orderTotal = orderQuantity.value * pizzaPrice
+  
+  cookingTime = () => {
+    if (orderQuantity <= 2) {
+      return 10
+    }
+    else if (orderQuantity >= 3 && orderQuantity <= 5) {
+        return 15
+    }
+    else {
+        return 20
+    }
+  }
+
+  botReply(`${orderQuantity.value} ${orderName} coming up! That will be ${orderTotal} kr, and it will take ${cookingTime()} minutes.`)
+
+  inputWrapper.innerHTML = `
+    <button id="restart">Order more</button>
+  `
+  document.getElementById('restart').addEventListener('click', () => {
+    location.reload()
+    return false
+  })
+}
+
+sendBtn.addEventListener('click', () => nextQuestion(nameInput.value))
+nameInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter' && nameInput.value) nextQuestion(nameInput.value)
+})
+
 setTimeout(greeting, 1000)
