@@ -1,5 +1,7 @@
 // All the DOM selectors stored as short variables
-const chat = document.getElementById('chat')
+const chat = document.getElementById("chat")
+const nameForm = document.getElementById("name-form")
+const nameInput = document.getElementById("name-input")
 
 // Global variables, if you need any, declared here
 
@@ -7,7 +9,7 @@ const chat = document.getElementById('chat')
 
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
-  if (sender === 'user') {
+  if (sender === "user") {
     chat.innerHTML += `
       <section class="user-msg">
         <div class="bubble user-bubble">
@@ -16,7 +18,7 @@ const showMessage = (message, sender) => {
         <img src="assets/user.png" alt="User" />  
       </section>
     `
-  } else if (sender === 'bot') {
+  } else if (sender === "bot") {
     chat.innerHTML += `
       <section class="bot-msg">
         <img src="assets/bot.png" alt="Bot" />
@@ -32,11 +34,28 @@ const showMessage = (message, sender) => {
 
 // Starts here
 const greeting = () => {
-  showMessage(`Hello there, What's your name?`, 'bot')
+  showMessage("Hej, vad heter du?", "bot")
   // Just to check it out, change 'bot' to 'user' here 👆
 }
 
 // Set up your eventlisteners here
+nameForm.addEventListener("submit", (event) => {
+  //event.preventDefault() funktion förhindrar att sidan laddas om när formuläret skickas
+  event.preventDefault()
+
+  //Sparar input-värdet i en variabel
+  const userName = nameInput.value
+
+  //Loggar till konsollen för att se att variabeln innehåller det vi vill
+  console.log(userName)
+
+  //Tömmer input-fältet i browsern
+  nameInput.value = ""
+
+  //Kallar på showMessage-funktionen och skickar med userName-variabeln som meddelande,
+  //och "user" som avsändare
+  showMessage(userName, "user")
+})
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
