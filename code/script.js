@@ -3,6 +3,39 @@ const chat = document.getElementById("chat")
 const nameForm = document.getElementById("name-form")
 const nameInput = document.getElementById("name-input")
 
+// Vi hämtar input-wrapper från HTML:en för att kunna byta ut innehåller
+const inputWrapper = document.getElementById("input-wrapper")
+
+// Menyer
+// Jag lade till selected och disabled som attribut till det första valet
+// för att det första alternativet inte ska vara valbar
+const pizzaMenu = `
+  <select>
+    <option value="" selected disabled>Välj en pizza...</option>
+    <option value="Margerita">Margerita</option>
+    <option value="Vesuvio">Vesuvio</option>
+    <option value="Pepperoni">Pepperoni</option>
+  </select>
+`
+
+const pastaMenu = `
+  <select>
+    <option value="" selected disabled>Välj en pasta...</option>
+    <option value="Carbonara">Pasta Carbonara</option>
+    <option value="Pomodoro">Pasta Pomodoro</option>
+    <option value="Frutti Di Mare">Frutti Di Mare</option>
+  </select>
+`
+
+const saladMenu = `
+  <select>
+    <option value="" selected disabled>Välj en sallad...</option>
+    <option value="Grekisk sallad">Grekisk sallad</option>
+    <option value="Pomodoro">Pasta Pomodoro</option>
+    <option value="Frutti Di Mare">Frutti Di Mare</option>
+  </select>
+`
+
 // Global variables, if you need any, declared here
 
 // Functions declared here
@@ -32,6 +65,73 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+//Fråga 3
+
+// Vi definierar foodChoice som en parameter för att kunna ta emot
+// mat-valet som ett argument ("pizza", "pasta" eller "sallad")
+const askForDish = foodChoice => {
+  showMessage(`Jag vill ha ${foodChoice}`, "user")
+  setTimeout(() => showMessage(`Vilken typ av ${foodChoice} vill du ha?`, "bot"), 1000)
+
+  // Vi skriver ett villkor för om användaren valt pizza
+  if (foodChoice === "pizza") {
+    // Vi definierade menyerna som variabler högst upp i dokumentet
+    // Vi byter ut innehållet i inputWrapper från knappar till en rullgardinsmeny
+    inputWrapper.innerHTML = pizzaMenu
+
+  } else if (foodChoice === "pasta") {
+    // Visa pastameny
+    inputWrapper.innerHTML = pastaMenu
+
+  } else {
+    // Visa salladsmeny
+    inputWrapper.innerHTML = saladMenu
+  }
+}
+
+// Fråga 2
+// Vi definierar userName som parameter för att kunna skicka med
+// den från vår förra funktion.
+const askForFood = userName => {
+  showMessage(`Trevligt att träffas, ${userName}! Vad vill du äta idag?`, "bot")
+  
+  // Vi byter ut innehållet i inputWrapper från text-input till knappar
+  inputWrapper.innerHTML=`
+    <button id="pizzaButton">Pizza</button>
+    <button id="pastaButton">Pasta</button>
+    <button id="saladButton">Sallad</button>
+  `
+  // Vi hämtar knapparna med hjälp av dess id:n.
+  // Vi lyssnar på klick-händelsen och kallar då på funktionen som styr nästa fråga (askForDish)
+  // Vi skickar med valet av mat som ett argument i form av en sträng
+  // PS. Man kan skriva document.getElementById("pizzaButton").addEventListener("click", () => askForDish("pizza"))
+  // på en rad, men för att göra det mer läsbart kan man formattera det som nedan
+  document
+    .getElementById("pizzaButton")
+    .addEventListener("click", () => askForDish("pizza"))
+  document
+    .getElementById("pastaButton")
+    .addEventListener("click", () => askForDish("pasta"))
+  document
+    .getElementById("saladButton")
+    .addEventListener("click", () => askForDish("sallad"))
+}
+
+
+// Fråga 1
+// Vi definierar händelsen som en parameter för att kunna förhindra
+// formulärets standardbeteende (som är att ladda om sidan)
+const handleNameInput = event => {
+  event.preventDefault()
+  const userName = nameInput.value
+  nameInput.value = ""
+  showMessage(userName, "user")
+
+  // Med 1 sekunds fördröjning kallar vi på askForFood-funktionen
+  // och skickar med userName-variabeln som argument.
+  setTimeout(() => askForFood(userName), 1000)
+}
+
 // Starts here
 const greeting = () => {
   showMessage("Hej, vad heter du?", "bot")
@@ -39,23 +139,8 @@ const greeting = () => {
 }
 
 // Set up your eventlisteners here
-nameForm.addEventListener("submit", (event) => {
-  //event.preventDefault() funktion förhindrar att sidan laddas om när formuläret skickas
-  event.preventDefault()
-
-  //Sparar input-värdet i en variabel
-  const userName = nameInput.value
-
-  //Loggar till konsollen för att se att variabeln innehåller det vi vill
-  console.log(userName)
-
-  //Tömmer input-fältet i browsern
-  nameInput.value = ""
-
-  //Kallar på showMessage-funktionen och skickar med userName-variabeln som meddelande,
-  //och "user" som avsändare
-  showMessage(userName, "user")
-})
+// När formuläret skickas anropas handleNameInput-funktionen.
+nameForm.addEventListener("submit", handleNameInput)
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
