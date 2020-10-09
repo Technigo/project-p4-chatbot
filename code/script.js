@@ -2,15 +2,19 @@
 const chat = document.getElementById("chat")
 const nameForm = document.getElementById("name-form")
 const nameInput = document.getElementById("name-input")
-
-// Vi hämtar input-wrapper från HTML:en för att kunna byta ut innehåller
 const inputWrapper = document.getElementById("input-wrapper")
 
-// Menyer
-// Jag lade till selected och disabled som attribut till det första valet
-// för att det första alternativet inte ska vara valbar
+// Global variables, if you need any, declared here
+
+// Vi deklarerar userName som en global variabel för att sedan
+// ge den ett nytt värde i fråga 1, samt för att kunna använda
+// den i sammanfattningen från boten
+let userName = ""
+
+// Här lägger vi till id="select" för att kunna hämta dem senare
+// och lyssna på dem.
 const pizzaMenu = `
-  <select>
+  <select id="select">
     <option value="" selected disabled>Välj en pizza...</option>
     <option value="Margerita">Margerita</option>
     <option value="Vesuvio">Vesuvio</option>
@@ -19,7 +23,7 @@ const pizzaMenu = `
 `
 
 const pastaMenu = `
-  <select>
+  <select id="select">
     <option value="" selected disabled>Välj en pasta...</option>
     <option value="Carbonara">Pasta Carbonara</option>
     <option value="Pomodoro">Pasta Pomodoro</option>
@@ -28,15 +32,13 @@ const pastaMenu = `
 `
 
 const saladMenu = `
-  <select>
+  <select id="select">
     <option value="" selected disabled>Välj en sallad...</option>
     <option value="Grekisk sallad">Grekisk sallad</option>
     <option value="Pomodoro">Pasta Pomodoro</option>
     <option value="Frutti Di Mare">Frutti Di Mare</option>
   </select>
 `
-
-// Global variables, if you need any, declared here
 
 // Functions declared here
 
@@ -61,74 +63,159 @@ const showMessage = (message, sender) => {
       </section>
     `
   }
+
   // This little thing makes the chat scroll to the last message when there are too many to be shown in the chat box
   chat.scrollTop = chat.scrollHeight
 }
 
+//Sammanfattning
+
+// Vi deklarerar vår sista funktion med två parametrar
+const askForConfirmation = (amount, selectedDish) => {
+  
+  // Vi tömmer input-fältet
+  inputWrapper.innerHTML = ""
+
+  // Vi skickar ett meddelande från botten med hjälp av parametrarna
+  showMessage(`Okej, vi har tagit emot din order på ${amount} ${selectedDish}! Är du säker på att du vill beställa detta?`, "bot")
+  
+  // Vi byter ut HTML:en till två knappar och ger dem varsitt id
+  inputWrapper.innerHTML = `
+    <button id="restart">Nej ✋</button>
+    <button id="confirm">Ja 😋</button>
+  `
+  
+  // Vi hämtar knapparna för att sedan kunna lyssna på knapptryck
+  // Nej-knappen har id="restart" och då kallar vi på en inbyggd
+  // JavaScript-funktion för att ladda om sidan.
+  document.getElementById("restart").addEventListener("click", () => location.reload())
+  
+  // Ja-knappen har id="confirm"
+  document.getElementById("confirm").addEventListener("click", () => {
+    
+    // Vi tömmer då input-fältet
+    inputWrapper.innerHTML = ""
+
+    // Vi skickar ett meddelande från användaren
+    showMessage("Ja 😋", "user")
+
+    // Vi skickar vårt sista meddelande från boten och använder dels
+    // parametrarna amount och selectedDish, men också den globala
+    // variabeln userName
+    setTimeout(() => showMessage(`Tack ${userName} för din beställning av ${amount} ${selectedDish}!`, "bot"), 1000)
+  })
+}
+
+//Fråga 4
+
+// Vi deklarerar askForAmount-funktionen med selectedDish som parameter
+const askForAmount = selectedDish => {
+  
+  // Vi skickar ett meddelande från boten och hämtar då upp parametern
+  showMessage(`Hur många ${selectedDish} vill du ha?`, "bot")
+
+  // Vi byter ut input-fältets HTML för att visa en numerisk input och
+  // en knapp. Vi ger dem varsitt id för att kunna använda dem nedan.
+  inputWrapper.innerHTML = `
+    <input type="number" id="amount"/>
+    <button id="amount-btn" class="send-btn">
+      Skicka
+    </button>
+  `
+  
+  // Vi sparar den numeriska inputten i en variabel
+  const amountInput = document.getElementById("amount")
+
+  // Vi hämtar knappen för att kunna lyssna på knapptrycket.
+  document.getElementById("amount-btn").addEventListener("click", () => {
+    
+    // Vid knapptryck skickar vi först ett meddelande från användaren
+    // med värdet av den numeriska inputten
+    showMessage(amountInput.value, "user")
+
+    // Därefter kallar vi på nästa funktion med en fördröjning. Vi skickar
+    // med både värdet av den numeriska inputten och den valda maträtten
+    // som argument.
+    setTimeout(() => askForConfirmation(amountInput.value, selectedDish), 1000)
+  })
+}
+
 //Fråga 3
-
-// Vi definierar foodChoice som en parameter för att kunna ta emot
-// mat-valet som ett argument ("pizza", "pasta" eller "sallad")
 const askForDish = foodChoice => {
-  showMessage(`Jag vill ha ${foodChoice}`, "user")
-  setTimeout(() => showMessage(`Vilken typ av ${foodChoice} vill du ha?`, "bot"), 1000)
+  showMessage(`Vilken typ av ${foodChoice} vill du ha?`, "bot")
 
-  // Vi skriver ett villkor för om användaren valt pizza
   if (foodChoice === "pizza") {
-    // Vi definierade menyerna som variabler högst upp i dokumentet
-    // Vi byter ut innehållet i inputWrapper från knappar till en rullgardinsmeny
     inputWrapper.innerHTML = pizzaMenu
-
   } else if (foodChoice === "pasta") {
-    // Visa pastameny
     inputWrapper.innerHTML = pastaMenu
-
   } else {
-    // Visa salladsmeny
     inputWrapper.innerHTML = saladMenu
   }
+
+  // Vi hämtar rullgardins-menyn från HTML:en med hjälp av dess id
+  const selectedDish = document.getElementById("select")
+
+  // Vi lyssnar på en förändring i rullgardinmenyn
+  selectedDish.addEventListener("change", () => {
+    
+    // Vi skickar värdet av rullgardinsvalet som ett meddelande från
+    // användaren.
+    showMessage(selectedDish.value, "user")
+
+    // Vi kallar på askForAmount-funktionen med fördröjning. Vi skickar
+    // med värdet av rullgardinsmenyn som ett argument.
+    setTimeout(() => askForAmount(selectedDish.value), 1000)
+  })
 }
 
 // Fråga 2
-// Vi definierar userName som parameter för att kunna skicka med
-// den från vår förra funktion.
 const askForFood = userName => {
   showMessage(`Trevligt att träffas, ${userName}! Vad vill du äta idag?`, "bot")
   
-  // Vi byter ut innehållet i inputWrapper från text-input till knappar
   inputWrapper.innerHTML=`
     <button id="pizzaButton">Pizza</button>
     <button id="pastaButton">Pasta</button>
     <button id="saladButton">Sallad</button>
   `
-  // Vi hämtar knapparna med hjälp av dess id:n.
-  // Vi lyssnar på klick-händelsen och kallar då på funktionen som styr nästa fråga (askForDish)
-  // Vi skickar med valet av mat som ett argument i form av en sträng
-  // PS. Man kan skriva document.getElementById("pizzaButton").addEventListener("click", () => askForDish("pizza"))
-  // på en rad, men för att göra det mer läsbart kan man formattera det som nedan
+
   document
     .getElementById("pizzaButton")
-    .addEventListener("click", () => askForDish("pizza"))
+    .addEventListener("click", () => {
+      // Vi definierar vad som ska hända när användaren klickar på en
+      // av matknapparna inuti måsvingar för att kunna skriva flera
+      // rader. Vi skickar först ett meddelande från användaren och
+      // sedan fördröjer vi hela anropet av askForDish-funktionen med
+      // hjälp av setTimeout-funktionen. På samma sätt för alla tre knappar.
+      showMessage(`Jag vill ha pizza`, "user")
+      setTimeout(() => askForDish("pizza"), 1000)
+    })
   document
     .getElementById("pastaButton")
-    .addEventListener("click", () => askForDish("pasta"))
+    .addEventListener("click", () => {
+      showMessage(`Jag vill ha pasta`, "user")
+      setTimeout(() => askForDish("pasta"), 1000)
+    })
   document
     .getElementById("saladButton")
-    .addEventListener("click", () => askForDish("sallad"))
+    .addEventListener("click", () => {
+      showMessage(`Jag vill ha sallad`, "user")
+      setTimeout(() => askForDish("sallad"), 1000)
+    })
 }
 
 
 // Fråga 1
-// Vi definierar händelsen som en parameter för att kunna förhindra
-// formulärets standardbeteende (som är att ladda om sidan)
 const handleNameInput = event => {
   event.preventDefault()
-  const userName = nameInput.value
+
+  // Här tog vi bort const-deklarationen eftersom vi istället
+  // deklarerar userName som en global variabel högst upp. Vi
+  // deklarerade den med let på rad 12 - för att kunna ge den
+  // ett nytt värde på raden nedan
+  userName = nameInput.value
   nameInput.value = ""
   showMessage(userName, "user")
 
-  // Med 1 sekunds fördröjning kallar vi på askForFood-funktionen
-  // och skickar med userName-variabeln som argument.
   setTimeout(() => askForFood(userName), 1000)
 }
 
@@ -139,7 +226,6 @@ const greeting = () => {
 }
 
 // Set up your eventlisteners here
-// När formuläret skickas anropas handleNameInput-funktionen.
 nameForm.addEventListener("submit", handleNameInput)
 
 // When website loaded, chatbot asks first question.
