@@ -59,8 +59,17 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+//Fråga 6 Prepare food
+//const askForSoda = (askForConfirmation)=>{
+//if (askForConfirmation === 'confirm' ){
+ // inputWrapper.innerHTML =''
+ // showMessage(`Do you want a free soda!`, 'bot')
+//} else{
+  //showMessage(`Try again later!`, 'bot')
+//
+//}
 
-//Sammanfatta (två parametrar) amount och selected
+// Fråga 5 Sammanfatta (två parametrar) amount och selected
 const askForConfirmation = (amount, selectedDish) => {
 inputWrapper.innerHTML =''
 showMessage(`Alright, we have recived your order for ${amount} ${selectedDish}! Please confirm, that you would like to order`)
@@ -72,9 +81,10 @@ document.getElementById('restart').addEventListener('click', () => location.relo
 document.getElementById('confirm').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'user')
-  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}`, 'bot'), 1000)
+  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you also want a free soda`, 'bot'), 1000)
 })
 }
+
 
 //Fråga 4
 const askForAmount = selectedDish => {
@@ -136,7 +146,6 @@ const askForFood = (userName) =>{
   <button id="cheeseButton">Cheese Burger</button>
   <button id="chilliButton">Chilli Burger</button>
   `
-  
   
   document
   .getElementById("originalButton")
