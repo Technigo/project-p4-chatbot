@@ -6,13 +6,8 @@ const inputWrapper = document.getElementById("input-wrapper")
 
 // Global variables, if you need any, declared here
 
-// Vi deklarerar userName som en global variabel för att sedan
-// ge den ett nytt värde i fråga 1, samt för att kunna använda
-// den i sammanfattningen från boten
 let userName = ""
 
-// Här lägger vi till id="select" för att kunna hämta dem senare
-// och lyssna på dem.
 const pizzaMenu = `
   <select id="select">
     <option value="" selected disabled>Välj en pizza...</option>
@@ -45,8 +40,11 @@ const saladMenu = `
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
   if (sender === "user") {
+
+    //#1. Vi ger sektionen med klassnam user-msg ett till klassnamn
+    //    som vi döper till fade-in
     chat.innerHTML += `
-      <section class="user-msg">
+      <section class="user-msg fade-in">
         <div class="bubble user-bubble">
           <p>${message}</p>
         </div>
@@ -54,8 +52,9 @@ const showMessage = (message, sender) => {
       </section>
     `
   } else if (sender === "bot") {
+    //#2. Vi ger sektionen med klassnam bot-msg samma
     chat.innerHTML += `
-      <section class="bot-msg">
+      <section class="bot-msg fade-in">
         <img src="assets/bot.png" alt="Bot" />
         <div class="bubble bot-bubble">
           <p>${message}</p>
@@ -64,78 +63,58 @@ const showMessage = (message, sender) => {
     `
   }
 
+  //#3. Med 3 sekunders fördröjning hämtar vi alla sektioner som har
+  //    klassnamnet "fade-in". Glöm inte punkten - det är så
+  //    querySelectorAll-metoden förstår att den ska hämta med hjälp
+  //    av klass.
+  setTimeout(() => {
+    document
+      .querySelectorAll(".fade-in")
+
+      //#4. För varje sektion (chatbubbla) ber vi sedan om att ta bort
+      //    klassnamnet fade-in. Detta för att inte alla meddelanden
+      //    ska ha "fade-in", så fort det kommer ett nytt meddelande.
+      //    Bara den nyaste ska ha den effekten. Nästa steg hittar du i
+      //    CSS-filen!
+      .forEach((chatBubble) => {
+        chatBubble.classList.remove('fade-in')
+      })
+  }, 1000)
+
   // This little thing makes the chat scroll to the last message when there are too many to be shown in the chat box
   chat.scrollTop = chat.scrollHeight
 }
 
 //Sammanfattning
-
-// Vi deklarerar vår sista funktion med två parametrar
 const askForConfirmation = (amount, selectedDish) => {
-  
-  // Vi tömmer input-fältet
   inputWrapper.innerHTML = ""
-
-  // Vi skickar ett meddelande från botten med hjälp av parametrarna
   showMessage(`Okej, vi har tagit emot din order på ${amount} ${selectedDish}! Är du säker på att du vill beställa detta?`, "bot")
-  
-  // Vi byter ut HTML:en till två knappar och ger dem varsitt id
   inputWrapper.innerHTML = `
     <button id="restart">Nej ✋</button>
     <button id="confirm">Ja 😋</button>
   `
-  
-  // Vi hämtar knapparna för att sedan kunna lyssna på knapptryck
-  // Nej-knappen har id="restart" och då kallar vi på en inbyggd
-  // JavaScript-funktion för att ladda om sidan.
   document.getElementById("restart").addEventListener("click", () => location.reload())
-  
-  // Ja-knappen har id="confirm"
   document.getElementById("confirm").addEventListener("click", () => {
-    
-    // Vi tömmer då input-fältet
     inputWrapper.innerHTML = ""
-
-    // Vi skickar ett meddelande från användaren
     showMessage("Ja 😋", "user")
-
-    // Vi skickar vårt sista meddelande från boten och använder dels
-    // parametrarna amount och selectedDish, men också den globala
-    // variabeln userName
     setTimeout(() => showMessage(`Tack ${userName} för din beställning av ${amount} ${selectedDish}!`, "bot"), 1000)
   })
 }
 
 //Fråga 4
-
-// Vi deklarerar askForAmount-funktionen med selectedDish som parameter
 const askForAmount = selectedDish => {
-  
-  // Vi skickar ett meddelande från boten och hämtar då upp parametern
   showMessage(`Hur många ${selectedDish} vill du ha?`, "bot")
 
-  // Vi byter ut input-fältets HTML för att visa en numerisk input och
-  // en knapp. Vi ger dem varsitt id för att kunna använda dem nedan.
   inputWrapper.innerHTML = `
     <input type="number" id="amount"/>
     <button id="amount-btn" class="send-btn">
       Skicka
     </button>
   `
-  
-  // Vi sparar den numeriska inputten i en variabel
   const amountInput = document.getElementById("amount")
 
-  // Vi hämtar knappen för att kunna lyssna på knapptrycket.
   document.getElementById("amount-btn").addEventListener("click", () => {
-    
-    // Vid knapptryck skickar vi först ett meddelande från användaren
-    // med värdet av den numeriska inputten
     showMessage(amountInput.value, "user")
-
-    // Därefter kallar vi på nästa funktion med en fördröjning. Vi skickar
-    // med både värdet av den numeriska inputten och den valda maträtten
-    // som argument.
     setTimeout(() => askForConfirmation(amountInput.value, selectedDish), 1000)
   })
 }
@@ -152,18 +131,10 @@ const askForDish = foodChoice => {
     inputWrapper.innerHTML = saladMenu
   }
 
-  // Vi hämtar rullgardins-menyn från HTML:en med hjälp av dess id
   const selectedDish = document.getElementById("select")
 
-  // Vi lyssnar på en förändring i rullgardinmenyn
   selectedDish.addEventListener("change", () => {
-    
-    // Vi skickar värdet av rullgardinsvalet som ett meddelande från
-    // användaren.
     showMessage(selectedDish.value, "user")
-
-    // Vi kallar på askForAmount-funktionen med fördröjning. Vi skickar
-    // med värdet av rullgardinsmenyn som ett argument.
     setTimeout(() => askForAmount(selectedDish.value), 1000)
   })
 }
@@ -181,11 +152,6 @@ const askForFood = userName => {
   document
     .getElementById("pizzaButton")
     .addEventListener("click", () => {
-      // Vi definierar vad som ska hända när användaren klickar på en
-      // av matknapparna inuti måsvingar för att kunna skriva flera
-      // rader. Vi skickar först ett meddelande från användaren och
-      // sedan fördröjer vi hela anropet av askForDish-funktionen med
-      // hjälp av setTimeout-funktionen. På samma sätt för alla tre knappar.
       showMessage(`Jag vill ha pizza`, "user")
       setTimeout(() => askForDish("pizza"), 1000)
     })
@@ -207,11 +173,6 @@ const askForFood = userName => {
 // Fråga 1
 const handleNameInput = event => {
   event.preventDefault()
-
-  // Här tog vi bort const-deklarationen eftersom vi istället
-  // deklarerar userName som en global variabel högst upp. Vi
-  // deklarerade den med let på rad 12 - för att kunna ge den
-  // ett nytt värde på raden nedan
   userName = nameInput.value
   nameInput.value = ""
   showMessage(userName, "user")
