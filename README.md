@@ -1,13 +1,15 @@
-# Project Name
+# Nannybot 
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This bot will help taking care of your baby. 
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+So far the bot is not one to count on. It says it will take care of your baby, but sadly you can't belive it yet. 
+
+Next step is not to make it more reliable, though. It would just be to make more different answers with cool effects. To complete that I would have to learn more javaScript and more about CSS. 
+
+First step is to make it compatible with looking at it from a phone. That is my next course at Technigo. 
 
 ## View it live
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://nannybot.netlify.app/
