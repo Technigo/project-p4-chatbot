@@ -12,4 +12,4 @@ First step is to make it compatible with looking at it from a phone. That is my 
 
 ## View it live
 
-www.nannybot.netlify.app
+https://nannybot.netlify.app/
