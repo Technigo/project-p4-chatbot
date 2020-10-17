@@ -74,12 +74,12 @@ const retry = () => {
   }, 5000)
 }
 
-//Answe Q4 scream - upgrsded nois cancelation
+//Answer Q4 scream - upgraded nois cancelation
 
 // Answer Q4 Diaper
 const diaperAnswer = () => {
-  showMessage(`Sorry 💩 I can't stand the smell but I called for some back up </br></br></br>`, "bot")
-  inputWrapper.innerHTML = `<iframe src="<iframe src="https://giphy.com/embed/keTQt1Ry7yM9dlwDkp" frameBorder="0"></iframe>`
+  showMessage(`Sorry 💩 I can't stand the smell but I called for some back up </br></br></br></br></br>`, "bot")
+  inputWrapper.innerHTML = `<img src="assets/grandparent.jpg" />`
 }
 
 // Answer Q4 Green 
@@ -107,7 +107,7 @@ const fixingProblem = (selectedProblem) => {
 
   if (selectedProblem === "Green") {
     greenTrollAnswer()
-  } else if (selectedProblem === "Someone need to cuddle with my baby") {
+  } else if (selectedProblem === "Someone needs to cuddle with my baby") {
     setTimeout(cuddleAnswer(), 1000)
   } else if (selectedProblem === "The diaper is full") {
     setTimeout(diaperAnswer(), 1000)
