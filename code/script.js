@@ -59,15 +59,27 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+//Fråga 7 
+const prepareFood = () => {
+ inputWrapper.innerHTML = `
+ <img src="https://media.giphy.com/media/l0K4lPx8bvdbFMdGM/giphy.gif" alt="This will display an animated GIF" />
+ `
+}
+
 //Fråga 6 Prepare food
-//const askForSoda = (askForConfirmation)=>{
-//if (askForConfirmation === 'confirm' ){
- // inputWrapper.innerHTML =''
- // showMessage(`Do you want a free soda!`, 'bot')
-//} else{
-  //showMessage(`Try again later!`, 'bot')
-//
-//}
+const askForFries = ()=> {
+inputWrapper.innerHTML =`
+<button id="yes"> Yes </button>
+<button id="no"> No </button>`
+
+document.getElementById('yes').addEventListener('click', () => {
+  inputWrapper.innerHTML = ''
+  showMessage('Yes🥳', 'no', 'user')
+  setTimeout(() => showMessage (`Thank you, your food will be right with you`, 'bot'), 1000)
+  setTimeout(() => prepareFood(), 4000)
+})
+}
+
 
 // Fråga 5 Sammanfatta (två parametrar) amount och selected
 const askForConfirmation = (amount, selectedDish) => {
@@ -81,7 +93,8 @@ document.getElementById('restart').addEventListener('click', () => location.relo
 document.getElementById('confirm').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'user')
-  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you also want a free soda`, 'bot'), 1000)
+  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free?`, 'bot'), 1000)
+  setTimeout(() => askForFries(), 2000)
 })
 }
 
@@ -222,4 +235,4 @@ function updateTransition() {
   return el;
 }
 
-var intervalID = window.setInterval(updateTransition, 7000);
+var intervalID = window.setInterval(updateTransition, 1000);
