@@ -94,7 +94,7 @@ document.getElementById('confirm').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'user')
   setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free🤠?`, 'bot'), 1000)
-  setTimeout(() => askForFries(), 2000)
+  setTimeout(() => askForFries(), 4000)
 })
 }
 
