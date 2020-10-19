@@ -75,8 +75,8 @@ inputWrapper.innerHTML =`
 document.getElementById('yes').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'no', 'user')
-  setTimeout(() => showMessage (`Thank you👏, Your Burger will be with you soon`, 'bot'), 1000)
-  setTimeout(() => prepareFood(), 4000)
+  setTimeout(() => showMessage (`Thank you, Your Burger will be with you soon👏`, 'bot'), 1000)
+  setTimeout(() => prepareFood(), 2000)
 })
 }
 
@@ -93,7 +93,7 @@ document.getElementById('restart').addEventListener('click', () => location.relo
 document.getElementById('confirm').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'user')
-  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free🤠?`, 'bot'), 4000)
+  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free🤠?`, 'bot'), 1000)
   setTimeout(() => askForFries(), 2000)
 })
 }
