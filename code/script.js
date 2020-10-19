@@ -75,7 +75,7 @@ inputWrapper.innerHTML =`
 document.getElementById('yes').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'no', 'user')
-  setTimeout(() => showMessage (`Thank you, your food will be right with you`, 'bot'), 1000)
+  setTimeout(() => showMessage (`Thank you👏, Your Burger will be with you soon`, 'bot'), 1000)
   setTimeout(() => prepareFood(), 4000)
 })
 }
@@ -84,7 +84,7 @@ document.getElementById('yes').addEventListener('click', () => {
 // Fråga 5 Sammanfatta (två parametrar) amount och selected
 const askForConfirmation = (amount, selectedDish) => {
 inputWrapper.innerHTML =''
-showMessage(`Alright, we have recived your order for ${amount} ${selectedDish}! Please confirm, that you would like to order`)
+showMessage(`Alright, we have recived your order for ${amount} ${selectedDish}! Please confirm your order`)
 inputWrapper.innerHTML = `
 <button id='restart'> Nej✋ </button>
 <button id='confirm'> Yes👍 </button>
@@ -93,7 +93,7 @@ document.getElementById('restart').addEventListener('click', () => location.relo
 document.getElementById('confirm').addEventListener('click', () => {
   inputWrapper.innerHTML = ''
   showMessage('Yes🥳', 'user')
-  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free?`, 'bot'), 1000)
+  setTimeout(() => showMessage (`Thank you ${userName} for your order of ${amount} ${selectedDish}. Do you want fries for free🤠?`, 'bot'), 4000)
   setTimeout(() => askForFries(), 2000)
 })
 }
@@ -101,6 +101,7 @@ document.getElementById('confirm').addEventListener('click', () => {
 
 //Fråga 4
 const askForAmount = selectedDish => {
+  inputWrapper.innerHTML =''
   showMessage(`How many ${selectedDish} do you want?`, 'bot')
   inputWrapper.innerHTML = `
   <input type="number" id="amount"/>
