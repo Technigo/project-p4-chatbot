@@ -220,19 +220,17 @@ setTimeout(greeting, 1000)
 
 
 
-
-
-function updateTransition() {
-  var el = document.querySelector("div.box");
+//function updateTransition() {
+  //var el = document.querySelector("div.box");
    
-  if (el) {
-    el.className = "box1";
-  } else {
-    el = document.querySelector("div.box1");
-    el.className = "box";
-  }
+  //if (el) {
+   // el.className = "box1";
+  //} else {
+   // el = document.querySelector("div.box1");
+   // el.className = "box";
+  //}
    
-  return el;
-}
+ // return el;
+//}
 
-var intervalID = window.setInterval(updateTransition, 1000);
+//var intervalID = window.setInterval(updateTransition, 1000);

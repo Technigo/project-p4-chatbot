@@ -6,8 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0026ff;
-
+  background: rgb(154, 80, 154);
  }
  
 
@@ -61,6 +60,7 @@ main {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  position: relative; 
 }
 
 .chat {
@@ -158,42 +158,36 @@ select {
   appearance: none;
 }
 
-.fries
+.fries1
 {
-  width: 20px;
   height: 50px;
   font-size: 20px;
-  left: 550px;
-  top: 20px;
+  left: 420px;
+  bottom: 750px;
   position: absolute;
 }
 
-.burger
+
+.burger1
 {
-  width: 20px;
+  max-width: 20;
   height: 50px;
   font-size: 20px;
-  left: -200px;
-  top: 200px;
+  left: -550px;
+  top: 40px;
   position: absolute;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
-.parent {
-  display: flex;
-  position: relative;
-  width: 250px; 
-  height:125px;
-  right: 35%;
-   
-  }
-
-.box {
-  width: 20px;
+.burger2
+{
+  max-width: 20;
   height: 50px;
   font-size: 20px;
-  left: 20px;
-  top: 400px;
-  right: 800px;
+  right: -550px; 
+  top: 40px;
   position: absolute;
-
- }
+}
