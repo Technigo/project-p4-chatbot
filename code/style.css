@@ -165,8 +165,8 @@ select {
   left: 420px;
   bottom: 750px;
   position: absolute;
+ 
 }
-
 
 .burger1
 {
@@ -176,10 +176,8 @@ select {
   left: -550px;
   top: 40px;
   position: absolute;
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
+  -webkit-animation: move 5s ease-in-out; 
+            animation: move 5s ease-in-out;
 }
 
 .burger2
@@ -190,4 +188,17 @@ select {
   right: -550px; 
   top: 40px;
   position: absolute;
+  -webkit-animation: move 5s ease-in-out; 
+  animation: move 5s ease-in-out;
+}
+@-webkit-keyframes move {
+  100% {
+      top: 200px;
+  }
+}
+
+@keyframes move {
+  100% {
+      top: 200px;
+  }
 }
