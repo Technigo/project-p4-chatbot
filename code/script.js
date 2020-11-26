@@ -2,7 +2,6 @@
 const chat = document.getElementById('chat')
 const nameInput = document.getElementById('name-input')
 const inputWrapper = document.getElementById('input-wrapper')
-//const childInput =document.getElementById('childBtn')
 
 // Global variables, if you need any, declared here
 
@@ -48,9 +47,9 @@ if (userValue === "Children's Decor") {
 showMessage (`If you are interested in ${userValue}, 
 then I suggest you look at <a href = './isa-room.html'> this page</a>`, 'bot')} else if (userValue ==="Adult's Decor")
 {showMessage (`If you are interested in ${userValue}, 
-then I suggest you look at <a href = 'https://'> this page</a>`, 'bot')} else if (userValue ==="Birthday Ideas")
+then I suggest you look at <a href = './home.html'> this page</a>`, 'bot')} else if (userValue ==="Birthday Ideas")
 {showMessage (`If you are interested in ${userValue}, 
-then I suggest you look at <a href = './'> this page</a>`, 'bot')} else if (userValue ==="Artwork")
+then I suggest you look at <a href = './home.html'> this page</a>`, 'bot')} else if (userValue ==="Artwork")
 {showMessage (`If you are interested in ${userValue}, 
 then I suggest you look at <a href = './diamond.html'> this page</a>`, 'bot')}
 
