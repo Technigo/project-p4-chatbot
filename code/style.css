@@ -6,14 +6,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0026ff;
+  background-image: url("./assets/KH_backgr_a5_1.jpg");
 }
 
 h1 {
+  font-size: 55px;
+  font-family: 'Archivo Black', sans-serif;
   font-weight: bold;
   font-size: 44px;
   line-height: 34px;
-  color: #fff;
+  color: #A39161;
   text-align: center;
 }
 
@@ -38,7 +40,7 @@ input {
   border: none;
   border-radius: 4px 0 0 4px;
   background: #e5e9ff;
-  color: #0026ff;
+  color: #1d75a8;
   padding: 16px;
   font-size: 16px;
   font-family: 'Montserrat';
@@ -53,7 +55,7 @@ main {
   max-width: 700px;
   height: 600px;
   border-radius: 30px;
-  background: #fff;
+  background: #F9A7C4;
   padding: 20px 24px;
   padding-top: 0;
   box-sizing: border-box;
@@ -95,7 +97,7 @@ main {
   font-size: 16px;
   line-height: 26px;
   padding: 16px 24px;
-  color: #0026ff;
+  color: #1d75a8;
   max-width: 40%;
 }
 
@@ -120,7 +122,7 @@ main {
 }
 
 button {
-  background-color: #0026ff;
+  background-color:#A39161;
   color: white;
   border: none;
   border-radius: 4px;
@@ -137,4 +139,17 @@ button {
 button:hover {
   opacity: 0.9;
   transition: all 0.2s ease;
+}
+select {
+  width: 500px;
+  Height: 75px;
+	padding: 5px 20px;
+	font-size: 18px;
+	outline: none;
+  background-color: #A39161;
+	border: #A39161 solid 2px;
+	color: white;
+  font-weight: bold; 
+	margin-left: 10px;
+	border-radius: 10px;
 }
