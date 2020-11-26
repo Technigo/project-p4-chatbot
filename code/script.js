@@ -24,7 +24,7 @@ const showWebsiteOptions = (userName) => {
 //Update the input wrapper with the next set of options
 inputWrapper.innerHTML = `
 <select id="Dropdown">
-<option value="">So, what are you interested in?:</option>
+<option value="">So, what are you interested in? </option>
 <option value="Children's Decor">Children's Decor</option>
 <option value="Adult's Decor">Adult's Decor</option>
 <option value="Birthday Ideas">Birthday Ideas</option>
@@ -44,7 +44,15 @@ inputWrapper.innerHTML=''
 }
 const botReply = (userValue) =>{
 showMessage (`${userValue}? That's a great choice`, 'bot')
-showMessage (`If you are interested in ${userValue}, then I suggest you look at this page`, 'bot')
+if (userValue === "Children's Decor") {  
+showMessage (`If you are interested in ${userValue}, 
+then I suggest you look at <a href = './isa-room.html'> this page</a>`, 'bot')} else if (userValue ==="Adult's Decor")
+{showMessage (`If you are interested in ${userValue}, 
+then I suggest you look at <a href = 'https://'> this page</a>`, 'bot')} else if (userValue ==="Birthday Ideas")
+{showMessage (`If you are interested in ${userValue}, 
+then I suggest you look at <a href = './'> this page</a>`, 'bot')} else if (userValue ==="Artwork")
+{showMessage (`If you are interested in ${userValue}, 
+then I suggest you look at <a href = './diamond.html'> this page</a>`, 'bot')}
 
 }
 

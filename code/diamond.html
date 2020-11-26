@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kara Howes Forms Project Index</title>
+    <link rel="stylesheet" type="text/CSS" href="diamond.css"/> 
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>   
+      <img src="./assets/logo.png" alt="Bella and Bubbles logo">
+      <nav>
+        <a href="./home.html">HOME</a>
+        <a href="./about.html">ABOUT ME</a>
+        <a href="./photogal.html">PHOTO GALLERY</a>
+        <a href="./contact.html">CONTACT</a>
+      </nav> 
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+  </header>
+  
+  <section class="container-title">
+    <h1> AN INSPIRING PRINT....</h1> 
+
+  </section>
+    
+  
+  <section class="container">
+  <div class="image-box">
+      <p>I wanted to design some artwork for my kids to inspire them to be like a diamond. No, NOT a glittering, beautiful shiny 
+        tetrahedral-arrangement of Carbon atoms, rather to be Hard. Be a person of Substance. Be Fearless and Strong. Only by 
+      having a strong, centered framework can we truly shine.</p>
+      <img src="./assets/diamond_print.png" alt="a graphic print of a Diamond">
+  </div>
+  
+  
+  
+  <div class="text-box">
+      <p> This print can be yours (all yours, for free and everything). All you need to do is sign-up to our mailing-list, where 
+        you will also reveive monthly-updates about new products etc. We pinky-promise that we won't bombard you! Just pop your details 
+      down, and we'll do the rest.</p>
+      
+  </div>
+
+  <form action="http://httpbin.org/anything" method="POST">
+    <div class="name-row">
+        <label for="firstname"></label>
+        <input class="fname-signup" type="text" name="firstname" placeholder="First name" required>
+        <label for="lastname"></label>
+        <input class="lname-signup" type="text" name="lastname" placeholder="Last name"required>
+    </div>
+
+    <div class="submit-row">
+        <label for="email"></label>
+        <input class="email-submit "type="email" name=emailaddress placeholder="Email address" required>
+        <label for="send"></label>
+        <input type="submit" class="submit-submit" value="Sign up" title="Go on, press me!">
+
+
+    </div>
+
+
+
+</form>
+  
+  
+
+  
+    
+  </section>
+    <!-- Build your site up as you want it! Make sure to use the form element and try to send that form to httpbin by adding action="https://httpbin.org/anything" and method="POST" to your form tag. -->
+  </body>
+</html>
