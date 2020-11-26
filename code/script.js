@@ -40,10 +40,10 @@ showMessage(value, 'user')
 
 
 setTimeout(()=> botReply (value), 1000)
-
+inputWrapper.innerHTML=''
 }
 const botReply = (userValue) =>{
-showMessage (`Hey, ${userValue} that's a great choice`, 'bot')
+showMessage (`${userValue}? That's a great choice`, 'bot')
 showMessage (`If you are interested in ${userValue}, then I suggest you look at this page`, 'bot')
 
 }
