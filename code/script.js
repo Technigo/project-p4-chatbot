@@ -36,14 +36,15 @@ inputWrapper.innerHTML = `
 
 const dropdown = () => {
 const value = document.getElementById('Dropdown').value
-showMessage(`${value}`, 'user')
+showMessage(value, 'user')
 
 
-setTimeout(()=> botReply (name), 1000)
+setTimeout(()=> botReply (value), 1000)
 
 }
-const botReply = (userInput) =>{
-showMessage (`Hey, ${userInput}that's a great choice`, 'bot')
+const botReply = (userValue) =>{
+showMessage (`Hey, ${userValue} that's a great choice`, 'bot')
+showMessage (`If you are interested in ${userValue}, then I suggest you look at this page`, 'bot')
 
 }
 
