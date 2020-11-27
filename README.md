@@ -1,13 +1,13 @@
 # Project Name
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This assignment was to build a chatbot which would interact with the user. 
 
 ## The problem
+I decided to build on my current, on-going project and add a chatbot to help navigate my website. Firstly, I wrote down what I intended to do and then the functions which would need to be invoked. I built the chatbot as a stand-alone page and then planned to incorporate it properly, if time allowed. I used conditionals to present the User with different pages, according to their selected interests.
+I found this project extremely challenging (the most difficult one yet), but I think by keeping my chatbot relatively simple, I was able to produce something that worked. Gratifyingly, I was then able to incorporate it into my website and I think all links are fully-functioning. I am actually extremely proud of what I have achieved in a relatively short amount of time.
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
 
 ## View it live
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://naughty-goldwasser-807431.netlify.app
+
