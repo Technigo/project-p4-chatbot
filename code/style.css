@@ -196,7 +196,10 @@ button {
 button:hover {
   opacity: 0.9;
   transition: all 0.2s ease;
+  
 }
+
+
 select {
   width: 500px;
   Height: 75px;
@@ -235,3 +238,5 @@ select {
       color: black;
     }
   }
+
+    
