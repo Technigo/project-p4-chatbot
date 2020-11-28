@@ -2,14 +2,18 @@
 const chat = document.getElementById('chat')
 const inputWrapper = document.getElementById('input-wrapper')
 const input = document.getElementById('input')
-const goodBtn = document.getElementById('good')
+const sendBtn = document.getElementById('send')
 
+let questionNumber = 1
 
-// Global variables, if you need any, declared here
+const botReply = (msg) => {
+  showMessage(msg, 'bot')
+}
 
-// Functions declared here
+const userReply = (msg) => {
+  showMessage(msg, 'user')
+}
 
-// This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
   if (sender === 'user') {
     chat.innerHTML += `
@@ -17,34 +21,59 @@ const showMessage = (message, sender) => {
         <div class="bubble user-bubble">
           <p>${message}</p>
         </div>
-        <img src="assets/user.png" alt="User" />  
+        <img src="assets/user.jpg" alt="User" />  
       </section>
     `
   } else if (sender === 'bot') {
     chat.innerHTML += `
       <section class="bot-msg">
-        <img src="assets/bot.png" alt="Bot" />
+        <img src="assets/bot.jpg" alt="Bot" />
         <div class="bubble bot-bubble">
           <p>${message}</p>
         </div>
       </section>
     `
   }
-  // This little thing makes the chat scroll to the last message when there are too many to be shown in the chat box
   chat.scrollTop = chat.scrollHeight
+}
+
+const nextQuestion = (message) => {
+  console.log('questionNumber', questionNumber)
+
+  if (questionNumber === 1) {
+    userReply(message)
+    input.value = ''
+    setTimeout(() => showMoods(message), 1000)
+  } else if (questionNumber === 2) {
+    userReply(message)
+    setTimeout(() => showType(message), 1000)
+  } else if (questionNumber === 3) {
+    userReply(message)
+    setTimeout(() => showGIF(message), 1000)
+  } else {
+    userReply(message)
+    setTimeout(thankYou, 1000)
+  }
 }
 
 // Starts here
 const greeting = () => {
-  showMessage(`Hello there, how are you feeling?`, 'bot')
-  greeting ()
+  questionNumber = 1
+  botReply(`Hello there, what's your name?`)
 }
-// the user should choose between these 3 options (buttons)
-inputWrapper.innerHTML = `
+
+const showMoods = (msg) => {
+  questionNumber++
+  botReply(
+    `Nice to meet you ${msg}. How do you feel?`
+  )
+
+  inputWrapper.innerHTML = `
     <button id="goodBtn">Good</button>
     <button id="mehBtn">Meh</button>
     <button id="badBtn">Bad</button>
   `
+
   document
     .getElementById('goodBtn')
     .addEventListener('click', () => nextQuestion('good'))
@@ -54,59 +83,64 @@ inputWrapper.innerHTML = `
   document
     .getElementById('badBtn')
     .addEventListener('click', () => nextQuestion('bad'))
-
-// after choosing a button the bot asks a question and the user should choose between 3 options
-botReply(
-      `Oh so you're in a ${type} mood. Let me help you! What do you need?`
-)
-
-inputWrapper.innerHTML = `
-    <select id="select">
-      <option value="" selected disabled>👇 Select what you need...</option>
-      <option value="a hug">a hug</option>
-      <option value="a laugh">a laugh</option>
-      <option value="Surprise me!">Surprise me!</option>
-    </select>
-  `
-  document
-    .getElementById('hugBtn')
-    .addEventListener('click', () => nextQuestion('a hug'))
-  document
-    .getElementById('laughhBtn')
-    .addEventListener('click', () => nextQuestion('a laugh'))
-  document
-    .getElementById('surpriseBtn')
-    .addEventListener('click', () => nextQuestion('surprise me!'))  
-    
-const showMenu = (type) => {
-  questionNumber++
-
-// the user gets a different gif, dependig on what he needs/chooses
-
-if (type === 'a hug') {
-  inputWrapper.innerHTML = `
-  <div style="width:100%;height:0;padding-bottom:65%;position:relative;">
-  <iframe src="https://giphy.com/embed/f6y4qvdxwEDx6" 
-  width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
-  </iframe>
-  </div><p><a href="https://giphy.com/gifs/hug-cat-cute-f6y4qvdxwEDx6">via GIPHY</a></p>
-  `
-} else if (type === 'a laugh') {
-  inputWrapper.innerHTML = `
-  <div style="width:100%;height:0;padding-bottom:53%;position:relative;">
-  <iframe src="https://giphy.com/embed/uo5qr8sVIOniU" 
-  width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
-  </iframe>
-  </div><p><a href="https://giphy.com/gifs/en-junio-sabado-uo5qr8sVIOniU">via GIPHY</a></p> 
-  `
-} else {
-  inputWrapper.innerHTML = `
-  <div style="width:100%;height:0;padding-bottom:56%;position:relative;">
-  <iframe src="https://giphy.com/embed/YQAdA99SV4DElB2b4z" 
-  width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
-  </iframe></div><p><a href="https://giphy.com/gifs/netflix-tiger-king-joe-exotic-carole-baskin-YQAdA99SV4DElB2b4z">via GIPHY</a></p>
-  `
 }
 
+const showType = (type) => {
+  questionNumber++
 
-// Set up your eventlisteners here
+  botReply(
+    `Oh so you're in a ${type} mood? Can I help you with something?`
+  )
+
+ inputWrapper.innerHTML = `
+    <button id="Help me">Help me</button>
+    <button id="Maybe">Maybe</button>
+  `
+  document
+    .getElementById('Help me')
+    .addEventListener('click', () => nextQuestion('Help me'))
+  document
+    .getElementById('Maybe')
+    .addEventListener('click', () => nextQuestion('Maybe'))
+}
+
+const showGIF = (size) => {
+  questionNumber++
+
+  let gift
+  if (size === 'Help me') {
+    gift = 'hug  <iframe src="https://giphy.com/embed/f6y4qvdxwEDx6" width="200" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hug-cat-cute-f6y4qvdxwEDx6"></a></p>'
+  } else {
+    gift = 'surprise <iframe src="https://giphy.com/embed/YQAdA99SV4DElB2b4z" width="200" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/netflix-tiger-king-joe-exotic-carole-baskin-YQAdA99SV4DElB2b4z"></a></p>'
+  }
+
+  botReply(
+    `I send you a ${gift} Did you like that? `
+  )
+
+  inputWrapper.innerHTML = `
+    <button id="restart">NO</button>
+    <button id="confirm">YES</button>
+  `
+
+  document.getElementById('restart').addEventListener('click', () => {
+    location.reload()
+    return false
+  })
+  document
+    .getElementById('confirm')
+    .addEventListener('click', () => nextQuestion('Yes!'))
+}
+
+const thankYou = () => {
+  botReply(`Thank you for chating with me! Stay strong during these wierd times <iframe src="https://giphy.com/embed/uo5qr8sVIOniU" width="200" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/en-junio-sabado-uo5qr8sVIOniU"></a></p>`)
+  inputWrapper.innerHTML = ``
+}
+
+sendBtn.addEventListener('click', () => nextQuestion(input.value))
+input.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter' && input.value) nextQuestion(input.value)
+})
+
+// When website loaded, chatbot asks first question.
+setTimeout(greeting, 1000)
