@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,300&display=swap');
+
+body {
+  background: #91acc4;
+  color: #fff;
+  font-family: 'Cormorant', serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 600;
+  border: 3px solid #fff;
+  border-radius: 7%;
+  padding: 10px 20px;
+  margin-bottom: 40px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  height: 100vh;
+}
+
+#result {
+  font-size: 36px;
+  color: #fff;
+}
+
+#ans {
+  color: #fff;
+  padding: 20px;
+  font-size: 26px;
+  background: transparent;
+  border: 0; 
+}
+
+#ans:focus {
+  outline: 0;
+  outline-offset: 0;
+}
