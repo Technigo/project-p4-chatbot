@@ -1,13 +1,11 @@
-# Project Name
+# Coronacoaster Chatbot
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+A simple chatbot to make you smile if you're on a coronacoaster.
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+I wanted to make a simple, funny bot. I followed the Technigo Pizzera Bot and made some changes so that it fits my idea. Initally My first try did'nt work out at all because I didn't really understand the functions etc. So I stared all over. 
 
-## View it live
+I published the bot on netlify:
+https://brave-allen-f43521.netlify.app/
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
