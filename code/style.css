@@ -6,12 +6,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0026ff;
+  background: #dadbdd;
 }
 
 h1 {
   font-weight: bold;
-  font-size: 44px;
+  font-size: 35px;
   line-height: 34px;
   color: #fff;
   text-align: center;
@@ -21,7 +21,7 @@ h2 {
   font-weight: bold;
   font-size: 24px;
   line-height: 34px;
-  color: #fff;
+  color: #446455;
   text-align: center;
   margin-bottom: 36px;
 }
@@ -37,14 +37,37 @@ input {
   box-sizing: border-box;
   border: none;
   border-radius: 4px 0 0 4px;
-  background: #e5e9ff;
-  color: #0026ff;
+  background: #dadbdd;
+  color: #fff;
   padding: 16px;
   font-size: 16px;
   font-family: 'Montserrat';
   font-weight: 600;
   line-height: 26px;
   flex: 1;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+select {
+  border: none;
+  border-radius: 4px;
+  color: #446455;
+  font-size: 20px;
+  font-weight: 600;
+  height: 60px;
+  font-family: 'Montserrat';
+  background: #dadbdd;
+  width: 100%;
+  padding: 0 20px;
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 main {
@@ -83,19 +106,24 @@ main {
   flex-shrink: 0;
 }
 
-.bot-msg img,
-.user-msg img {
+.bot-msg img{
   width: 60px;
   height: 60px;
 }
 
+.user-msg img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
 .bubble {
-  background: #e5e9ff;
+  background: #dadbdd;
   font-weight: 600;
   font-size: 16px;
   line-height: 26px;
   padding: 16px 24px;
-  color: #0026ff;
+  color: #446455;
   max-width: 40%;
 }
 
@@ -120,7 +148,7 @@ main {
 }
 
 button {
-  background-color: #0026ff;
+  background-color: #446455;
   color: white;
   border: none;
   border-radius: 4px;
