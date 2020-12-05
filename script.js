@@ -37,6 +37,7 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+// Question Sequence
 const nextQuestion = (message) => {
   console.log('questionNumber', questionNumber)
 
@@ -59,16 +60,15 @@ const nextQuestion = (message) => {
   }
 }
 
-// Starts here
+// Chat Start
 const greeting = () => {
   questionNumber = 1
-  botReply(`Welcome! I can't wait to find the perfect dessert for you &#128523 What's your name?`)
+  botReply(`Welcome! I look forward to finding the perfect dessert for you &#128523 What's your name?`)
 }
 
 const ovenQuestion = (msg) => {
   questionNumber++
-  botReply(
-    `Nice to meet you, ${msg}. Do you feel like turning up the heat and baking something?`
+  botReply(`Nice to meet you, ${msg}. Do you feel like turning up the heat and preparing something in the oven?`
   )
 
   inputWrapper.innerHTML = `
@@ -91,8 +91,7 @@ const ovenQuestion = (msg) => {
 const chocolateLevel = (oven) => {
   questionNumber++
 
-  botReply(
-    `${oven}? Alright! How much chocolate do you want in your dessert?`
+  botReply(`${oven}? Alright! How much chocolate do you want in your dessert?`
   )
 
   if (oven === `Yes, that's hot!`) {
@@ -114,10 +113,10 @@ const chocolateLevel = (oven) => {
 
 document
 .getElementById('aLotBtn')
-.addEventListener('click', () => nextQuestion(`Obviously A LOT`))
+.addEventListener('click', () => nextQuestion(`obviously A LOT`))
 document
 .getElementById('aLittleBtn')
-.addEventListener('click', () => nextQuestion(`Just the regular dose`))
+.addEventListener('click', () => nextQuestion(`just the regular dose`))
 }
 
 const howMuchTime = (chocolate) => {
@@ -125,46 +124,50 @@ const howMuchTime = (chocolate) => {
 
   botReply(`Ok, ${chocolate}, well noted. How much time do you have?`)
 
-  if (chocolate === `Obviously A LOT`) {
+  if (chocolate === `obviously A LOT`) {
   inputWrapper.innerHTML = `
-    <button id="alittleTimeBtn">All the time in the world, my schedule is cleared!</button>
-    <button id="muchTimeBtn">Not much, give me something quick & easy</button>
+    <button id="muchTimeBtn">All the time in the world, my schedule is cleared!</button>
+    <button id="littleTimeBtn">Not much, give me something quick & easy</button>
   `
 } else {
   inputWrapper.innerHTML = `
-  <button id="alittleTimeBtn">All the time in the world, my schedule is cleared!</button>
-  <button id="muchTimeBtn">Not much, give me something quick & easy</button>
+  <button id="muchTimeBtn">All the time in the world, my schedule is cleared!</button>
+  <button id="littleTimeBtn">Not much, give me something quick & easy</button>
   `
 }
 
-  document
-    .getElementById('alittleTimeBtn')
-    .addEventListener('click', () => nextQuestion('all the time in the world'))
-  document
-    .getElementById('muchTimeBtn')
-    .addEventListener('click', () => nextQuestion('not much time'))
+// unfortunately after this point my chatbot does not action and skips directly to the goodbye-message. What's missing?
+
+document
+  .getElementById('muchTimeBtn')
+  .addEventListener('click', () => nextQuestion('all the time in the world'))
+document
+  .getElementById('littleTimeBtn')
+  .addEventListener('click', () => nextQuestion('not much time'))
 }
 
 const suggestRecipe = (time) => {
   questionNumber++
 
+// not sure if it works by sending 3 separate messages from the bot?
+
   botReply(`If you have ${time} I suggest this recipe for you:`)
 
-
-const botReply = (userValue) =>{
+const botReply = (oven, time) =>{
   if (oven === `Let's keep it cool` && time === `not much time`) {  
-    showMessage (`This is the recipe for you: <a href =https://cherry-on-top.netlify.app/r_tiramisu.html' target="_blank">Tiramisu</a>`, 'bot')} 
+    showMessage (`img src="images/tiramisu.jpg" alt="Tiramisu" <br>
+    <a href =https://cherry-on-top.netlify.app/r_tiramisu.html' target="_blank">Tiramisu</a>`)} 
   else if (oven === `Let's keep it cool` && time === `all the time in the world`) 
-    {showMessage (`This is the recipe for you: <a href =https://cherry-on-top.netlify.app/r_toblernemousse.html' target="_blank">Toblerone Mousse</a>`, 'bot')} 
+    {showMessage (`img src="images/tobleronemousse.jpg" alt:"Toblerone Mousse" <br>
+    <a href =https://cherry-on-top.netlify.app/r_toblernemousse.html' target="_blank">Toblerone Mousse</a>`)} 
   else if (oven === `Yes, that's hot!` && time === `not much time`)
-    {showMessage (`This is the recipe for you: <a href =https://cherry-on-top.netlify.app/r_lavacake.html' target="_blank">Chocolate Lava Cakes</a>`, 'bot')} 
+    {showMessage (`img src="images/lavacake.jpg" lat_"Chocolate Lava Cakes" <br>
+    <a href =https://cherry-on-top.netlify.app/r_lavacake.html' target="_blank">Chocolate Lava Cakes</a>`)} 
   else if (userValue ==="Artwork")
-    {showMessage (`This is the recipe for you: <a href =https://cherry-on-top.netlify.app/r_brownies.html' target="_blank">Brownies</a>`, 'bot')}
+    {showMessage (`img src="images/Brownies.jpg" lat_"Brownies" <br>
+    <a href =https://cherry-on-top.netlify.app/r_brownies.html' target="_blank">Brownies</a>`)}
   }
-
-  botReply(
-    `One ${size} sized dish will be prepared for you. That'll be ${price}. 
-    Are you happy with your recipe?`
+  botReply(`Are you happy with your recipe?`
   )
 
   inputWrapper.innerHTML = `
@@ -182,7 +185,7 @@ const botReply = (userValue) =>{
 }
 
 const thankYou = () => {
-  botReply(`Sweet! Have fun and enjoy your dessert!`)
+  botReply(`Sweet! Have fun and enjoy your dessert &#128523`)
   inputWrapper.innerHTML = ``
 }
 
