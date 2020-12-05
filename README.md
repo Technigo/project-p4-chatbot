@@ -1,13 +1,14 @@
 # Project Name
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This was my first javascript project. The aim was to build a chatbot which would suggest a recipe according to the chosen paramenters.
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+For me, Javascript was a completely different level than HTML and CSS. While I understand the basic concepts, I feel like I haven't connected the dots yet for Javascript at all and I definitley need to study and practice more in order to really be able to use it.
+For this task I took the Technigo Pizza Bot and followed along and adjusted it to my topics.
+Unfortunately after a few questions my bot gets stubborn and refuses to continue how I want it to act. I'll try to fix that!
 
 ## View it live
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://cherry-on-top-chatbot.netlify.app
+

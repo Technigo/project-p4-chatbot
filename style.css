@@ -1,0 +1,227 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Bungee+Shade&family=Quicksand&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(194, 216, 245);
+  font-family: 'Quicksand', sans-serif; 
+}
+
+header{
+  overflow: hidden;
+  background:white;
+  padding: 20px;
+  color:black;
+ }
+
+ .cherry-logo{
+  float: left;
+  width: 60px;
+  padding: 10px 10px 0px 0px;
+ }
+
+
+h1 {
+  font-family: 'Bungee Shade', cursive;
+  padding: 15px 0;
+}
+
+h2 {
+  font-family: 'Bungee Hairline', cursive;
+  font-size: 25px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  margin: 0;
+}
+
+input {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  background: #e5e9ff;
+  color: #0026ff;
+  padding: 16px;
+  font-size: 16px;
+  font-family: 'Quicksand', sans-serif; 
+  font-weight: 600;
+  line-height: 26px;
+  flex: 1;
+}
+
+main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 700px;
+  height: 600px;
+  border-radius: 30px;
+  background: #fff;
+  padding: 20px 24px;
+  padding-top: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  overflow: scroll;
+  flex-direction: column;
+  padding-bottom: 16px;
+}
+
+.bot-msg {
+  display: flex;
+  margin: 16px 8px 0 0;
+  flex-shrink: 0;
+}
+
+.user-msg {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0 0 8px;
+  flex-shrink: 0;
+}
+
+.bot-msg img{
+  width: 60px;
+  height: 60px;
+  background-color: rgb(214, 182, 187);
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.user-msg img {
+  width: 60px;
+  height: 60px;
+  background-color: rgb(142, 202, 196);
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.bubble {
+  background: #e5e9ff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  padding: 16px 24px;
+  color: #0026ff;
+  max-width: 40%;
+}
+
+.bot-bubble {
+  border-radius: 0px 26px 26px 26px;
+  margin-left: 8px;
+}
+
+.user-bubble {
+  border-radius: 26px 0 26px 26px;
+  margin-right: 8px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.input-wrapper form {
+  width: 100%;
+  display: flex;
+}
+
+button {
+  background-color: #db5471;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 16px 40px;
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: 'Quicksand', sans-serif; 
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+
+footer{
+  background: white;
+  color: black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.social-icon{
+  height: 35px;
+  padding: 10px;
+  float: none;
+  padding: 10px 20px;
+}
+
+.footer-h2{
+  font-size: 13px;
+}
+
+.p-footer{
+  font-size: 13px;
+}
+
+
+/* For tablet: */
+@media (min-width: 600px) {
+  h2{
+    font-size: 28px;
+  }
+
+  h3{
+    font-size: 25px;
+  }
+  .footer-h2{
+    font-size: 18px;
+  }
+
+  .social-icon{
+    height: 35px;
+    padding: 10px;
+    float: none;
+    padding: 10px 20px;
+    }
+}
+
+
+/* For desktop: */
+@media (min-width: 768px) {
+h2{
+  font-size: 30px;
+}
+
+h3{
+  font-size: 20px;
+}
+.footer-h2{
+  font-size: 20px;
+}
+
+.social-icon{
+    height: 35px;
+    padding: 10px;
+    float: right;
+}
