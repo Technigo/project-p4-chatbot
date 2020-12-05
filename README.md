@@ -1,13 +1,10 @@
 # Project Name
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+Ben the Beer Bot is here to help your placing your beer order!
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
-
-## View it live
-
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+I tried to do it from scratch, but I failed miserably. 
+Then I copied the chat bot from the Technigo Netlify App and wanted to add some fancy adjustments and different user flows, but failed again. 
+Therefore I'm handing in a very basic copy of the Technigo Pizza Bot and will need to REALLY look deeper into this again. 
+This was much more difficult than expected!
