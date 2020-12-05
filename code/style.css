@@ -138,3 +138,13 @@ button:hover {
   opacity: 0.9;
   transition: all 0.2s ease;
 }
+
+
+.VideoBot {
+  width: 20px;
+}
+
+.gifhey{
+  width: 40%;
+  margin-left: -30px;
+}
