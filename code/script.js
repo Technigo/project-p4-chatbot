@@ -38,7 +38,7 @@ const greeting = () => {
   // Just to check it out, change 'bot' to 'user' here 👆
 }
 
-// Set up your eventlisteners here
+// Set up your eventlisteners here:
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
