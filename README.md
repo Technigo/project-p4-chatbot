@@ -1,8 +1,6 @@
-# Project Name
+# Framtidshjälparen - chatbot
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This is my chatbot that helps to choose a savings option based of a couple of questions.
 
 ## The problem
 
