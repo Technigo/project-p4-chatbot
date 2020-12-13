@@ -5,6 +5,18 @@ const chat = document.getElementById('chat')
 
 // Functions declared here
 
+const nameInput = document.getElementById('name-input')
+
+const handleNameInput = (event) => {
+  event.preventDefault()
+
+  showMessage(nameInput.value, "user")
+
+  nameInput.value = ''
+
+  }
+
+
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
   if (sender === 'user') {
@@ -32,11 +44,13 @@ const showMessage = (message, sender) => {
 
 // Starts here
 const greeting = () => {
-  showMessage(`Hello there, What's your name?`, 'bot')
+  showMessage(`Hej på dig! Vad heter du?`, 'bot')
   // Just to check it out, change 'bot' to 'user' here 👆
 }
 
 // Set up your eventlisteners here
+
+document.getElementById("name-form").addEventListener("submit", handleNameInput)
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
