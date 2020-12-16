@@ -5,46 +5,71 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #0026ff;
+  font-family: 'Quicksand', sans-serif;
+  background: #7babca;
 }
 
 h1 {
-  font-weight: bold;
+  font-weight: 800;
   font-size: 44px;
   line-height: 34px;
-  color: #fff;
+  color: rgb(90, 18, 18);
   text-align: center;
+  text-shadow: 4px 4px rgb(255, 255, 255);
+
 }
 
 h2 {
   font-weight: bold;
   font-size: 24px;
-  line-height: 34px;
-  color: #fff;
+  line-height: 8px;
+  color: rgb(90, 18, 18);
   text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 24px;
   margin: 0;
+  
+}
+
+button {
+  background-color: #5a2219;
+  color: white;
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  padding: 16px 40px;
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: 'Quicksand';
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transition: all 0.2s ease;
 }
 
 input {
   box-sizing: border-box;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  background: #e5e9ff;
-  color: #0026ff;
+  border: 2px;
+  border-color: #4e1000;
+  border-radius: 10px 10px 10px 10px;
+  background: #ffede6;
+  color: #000000;
   padding: 16px;
   font-size: 16px;
-  font-family: 'Montserrat';
+  font-family: 'Quicksand';
   font-weight: 600;
   line-height: 26px;
   flex: 1;
+  margin-right: 10px
 }
 
 main {
@@ -52,8 +77,8 @@ main {
   width: 100%;
   max-width: 700px;
   height: 600px;
-  border-radius: 30px;
-  background: #fff;
+  border-radius: 0px;
+  background: rgb(255, 255, 255);
   padding: 20px 24px;
   padding-top: 0;
   box-sizing: border-box;
@@ -90,12 +115,12 @@ main {
 }
 
 .bubble {
-  background: #e5e9ff;
+  background: #ffede6;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 10px;
   line-height: 26px;
   padding: 16px 24px;
-  color: #0026ff;
+  color: #4e1000;
   max-width: 40%;
 }
 
@@ -119,22 +144,3 @@ main {
   display: flex;
 }
 
-button {
-  background-color: #0026ff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 16px 40px;
-  margin-right: 4px;
-  font-size: 16px;
-  line-height: 26px;
-  font-family: 'Montserrat';
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  opacity: 0.9;
-  transition: all 0.2s ease;
-}
