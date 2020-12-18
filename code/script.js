@@ -39,39 +39,92 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+const goodBye = (yes, no) => {
+  document.getElementById('yes').addEventListener('click', () => {
+    showMessage('There you go, buon appetito!', 'bot')
+    inputWrapper.innerHTML = ''
+  })
+  document.getElementById('no').addEventListener('click', () => location.reload())
+  inputWrapper.innerHTML = ''
+}
+
+const exitStrategy = (trade) => {
+  showMessage(`Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`, 'bot')
+  inputWrapper.innerHTML = `
+  <button id='yes' type='submit'>Yes, GET IN MY BELLY!</button>
+  <button id='no' type='submit'>Hold on, let me change my order...</button>
+`
+  const yes = document.getElementById('yes')
+  const no = document.getElementById('no')
+  addEventListener('click', () => {
+    setTimeout(() => goodBye(yes, no), 1000)
+  })
+}
+
+const payment = (dish) => {
+  showMessage(`Pristine choice! It'll be 100 SEK for your ${dish}. How would you like to pay?`, 'bot')
+  inputWrapper.innerHTML = `
+  <button id='card' type='submit'>By card</button>
+  <button id='cash' type='submit'>With cash</button>
+  <button id='dishes' type='submit'>I'll do the dishes</button>
+`
+  document.getElementById('card').addEventListener('click', () => {
+    showMessage(`Plastic (not so) fantastic.`, 'user')
+    inputWrapper.innerHTML = ''
+    setTimeout(() => exitStrategy('card'), 1000)
+  })
+  document.getElementById('cash').addEventListener('click', () => {
+    showMessage(`I have a mint bill here for you.`, 'user')
+    inputWrapper.innerHTML = ''
+    setTimeout(() => exitStrategy('cash'), 1000)
+  })
+  document.getElementById('dishes').addEventListener('click', () => {
+    showMessage(`See, I can't... But I'll do the dishes! Please?`, 'user')
+    inputWrapper.innerHTML = ''
+    setTimeout(() => exitStrategy('doing the dishes'), 1000)
+  })
+}
+
+
 // Question 3
 const mainChoice = (specificChoice) => {
   if (specificChoice === 'pizza') {
-  showMessage(`Excellent! We have three different styles.`)
+  showMessage(`Excellent, pizza's always a winner!`, 'bot')
   inputWrapper.innerHTML = `
-  <select class='select' id='pizza'>
+  <select id='select'>
   <option value='' selected disabled>Which one will it be?</option>
-  <option value='blanco'>Pizza Blanco.</option>
-  <option value='svennebanan'>Svennebanan.</option>
-  <option value='nut2sweet'>Honey Chevre.</option>
+  <option value='pizza blanco'>Pizza Blanco</option>
+  <option value='svennebananpizza'>Svennebanan</option>
+  <option value='honey and chevre pizza'>Honey Chevre</option>
   </select>
   `
   } else if (specificChoice === 'pasta') {
-  showMessage(`Can't go wrong with a pasta.`)
+  showMessage(`Can't go wrong with a pasta!`, 'bot')
   inputWrapper.innerHTML = `
-  <select class='select' id='pasta'>
+  <select id='select'>
   <option value='' selected disabled>Which one would you like?</option>
-  <option value='salsiccia'>Salsiccia bolognese.</option>
-  <option value='shrimp'>Shrimp & saffron.</option>
-  <option value='fungi'>Creamy fungi.</option>
+  <option value='salsiccia bolognese pasta'>Salsiccia bolognese</option>
+  <option value='shrimp and saffron pasta'>Shrimp & saffron</option>
+  <option value='creamy fungi pasta'>Creamy fungi</option>
   </select>
   `
   } else {
-  showMessage(`Fresh, clean and tasty.`)
+  showMessage(`Fresh, clean and tasty!`, 'bot')
   inputWrapper.innerHTML = `
-  <select class='select' id='salad'>
+  <select id='select'>
   <option value='' selected disabled>Which one will clench your thirst?</option>
-  <option value='cobb'>Cobb salad.</option>
-  <option value='caesar'>Caesar salad.</option>
-  <option value='feta'>Feta & redbeet.</option>
+  <option value='cobb salad'>Cobb salad</option>
+  <option value='caesar salad'>Caesar salad</option>
+  <option value='feta and beetroot salad'>Feta & beetroot</option>
   </select>
   `
   }
+  const dish = document.getElementById('select')
+  addEventListener('change', () => {
+    showMessage(`I'll go with a ${dish.value}, thanks.`, 'user')
+    inputWrapper.innerHTML = ''
+    setTimeout(() => payment(dish.value), 1000)
+  })
 }
 
 
