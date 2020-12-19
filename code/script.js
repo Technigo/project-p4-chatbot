@@ -42,6 +42,7 @@ const buttonSelectMain = `
 <button id='pasta' type='submit'>🧆 Pasta</button>
 <button id='salad' type='submit'>🥗 Salad</button>
 `
+
 // Global variables, if you need any, declared here
 
 // Functions declared here
