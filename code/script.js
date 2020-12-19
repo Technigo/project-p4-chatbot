@@ -3,10 +3,48 @@ const chat = document.getElementById('chat')
 const nameForm = document.getElementById('name-form')
 const nameInput = document.getElementById('name-input')
 const inputWrapper = document.getElementById('input-wrapper')
-const pizzaBtn = document.getElementById('pizzaBtn')
-const pastaBtn = document.getElementById('pastaBtn')
-const saladBtn = document.getElementById('saladBtn')
+
+const exitHTML = `
+<button id='yes' type='submit'>Yes.</button>
+<button id='no' type='submit'>No.</button>
+`
+const paymentHTML = `
+<button id='card' type='submit'>By card</button>
+<button id='cash' type='submit'>With cash</button>
+<button id='dishes' type='submit'>I'll do the dishes</button>
+`
+const selectPizza = `
+<select id='select'>
+<option value='' selected disabled>Which one will it be?</option>
+<option value='pizza blanco'>Pizza Blanco</option>
+<option value='svennebananpizza'>Svennebanan</option>
+<option value='honey and chevre pizza'>Honey Chevre</option>
+</select>
+`
+const selectPasta = `
+<select id='select'>
+<option value='' selected disabled>Which one would you like?</option>
+<option value='salsiccia bolognese pasta'>Salsiccia bolognese</option>
+<option value='shrimp and saffron pasta'>Shrimp & saffron</option>
+<option value='creamy fungi pasta'>Creamy fungi</option>
+</select>
+`
+const selectSalad = `
+<select id='select'>
+<option value='' selected disabled>Which one will clench your thirst?</option>
+<option value='cobb salad'>Cobb salad</option>
+<option value='caesar salad'>Caesar salad</option>
+<option value='feta and beetroot salad'>Feta & beetroot</option>
+</select>
+`
+const buttonSelectMain = `
+<button id='pizza' type='submit'>Pizza</button>
+<button id='pasta' type='submit'>Pasta</button>
+<button id='salad' type='submit'>Salad</button>
+`
 // Global variables, if you need any, declared here
+
+
 
 // Functions declared here
 
@@ -39,28 +77,29 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
-
+const done = () => {
+  showMessage('There you go, buon appetito!', 'bot')
+}
 
 const exitStrategy = (trade) => {
   showMessage(`Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`, 'bot')
-  inputWrapper.innerHTML = `
-  <button id='yes' type='submit'>Yes, GET IN MY BELLY!</button>
-  <button id='no' type='submit'>Hold on, let me change my order...</button>
-`
-  document.getElementById('yes').addEventListener('click', () => {
-    showMessage('There you go, buon appetito!', 'bot')
+  inputWrapper.innerHTML = exitHTML
+  const yes = document.getElementById('yes')
+    yes.addEventListener('click', () => {
+    showMessage(`Yup, GET IN MY BELLY!`, 'user')
     inputWrapper.innerHTML = ''
+    setTimeout(() => done(yes), 1000)
   })
-  document.getElementById('no').addEventListener('click', () => window.location.reload())
+  document.getElementById('no').addEventListener('click', () => {
+    showMessage(`Let's start over, I need to change my order...`, 'user')
+    inputWrapper.innerHTML = ''
+    setTimeout(() => window.location.reload(), 1000)
+  })
 }
 
 const payment = (dish) => {
   showMessage(`Pristine choice! It'll be 100 SEK for your ${dish}. How would you like to pay?`, 'bot')
-  inputWrapper.innerHTML = `
-  <button id='card' type='submit'>By card</button>
-  <button id='cash' type='submit'>With cash</button>
-  <button id='dishes' type='submit'>I'll do the dishes</button>
-`
+  inputWrapper.innerHTML = paymentHTML
   document.getElementById('card').addEventListener('click', () => {
     showMessage(`Plastic (not so) fantastic.`, 'user')
     inputWrapper.innerHTML = ''
@@ -83,34 +122,13 @@ const payment = (dish) => {
 const mainChoice = (specificChoice) => {
   if (specificChoice === 'pizza') {
   showMessage(`Excellent, pizza's always a winner!`, 'bot')
-  inputWrapper.innerHTML = `
-  <select id='select'>
-  <option value='' selected disabled>Which one will it be?</option>
-  <option value='pizza blanco'>Pizza Blanco</option>
-  <option value='svennebananpizza'>Svennebanan</option>
-  <option value='honey and chevre pizza'>Honey Chevre</option>
-  </select>
-  `
+  inputWrapper.innerHTML = selectPizza
   } else if (specificChoice === 'pasta') {
   showMessage(`Can't go wrong with a pasta!`, 'bot')
-  inputWrapper.innerHTML = `
-  <select id='select'>
-  <option value='' selected disabled>Which one would you like?</option>
-  <option value='salsiccia bolognese pasta'>Salsiccia bolognese</option>
-  <option value='shrimp and saffron pasta'>Shrimp & saffron</option>
-  <option value='creamy fungi pasta'>Creamy fungi</option>
-  </select>
-  `
+  inputWrapper.innerHTML = selectPasta
   } else {
   showMessage(`Fresh, clean and tasty!`, 'bot')
-  inputWrapper.innerHTML = `
-  <select id='select'>
-  <option value='' selected disabled>Which one will clench your thirst?</option>
-  <option value='cobb salad'>Cobb salad</option>
-  <option value='caesar salad'>Caesar salad</option>
-  <option value='feta and beetroot salad'>Feta & beetroot</option>
-  </select>
-  `
+  inputWrapper.innerHTML = selectSalad
   }
   const dish = document.getElementById('select')
   addEventListener('change', () => {
@@ -124,11 +142,7 @@ const mainChoice = (specificChoice) => {
 // Question 2
 const showMainOptions = (userName) => {
   showMessage(`Nice to meet you, ${userName}. Which of our lovely main options would you like to choose?`, 'bot')
-  inputWrapper.innerHTML = `
-    <button id='pizza' type='submit'>Pizza</button>
-    <button id='pasta' type='submit'>Pasta</button>
-    <button id='salad' type='submit'>Salad</button>
-  `
+  inputWrapper.innerHTML = buttonSelectMain
   document.getElementById('pizza').addEventListener('click', () => {
     showMessage(`Let's see which pizzas you have!`, 'user')
     inputWrapper.innerHTML = ''
