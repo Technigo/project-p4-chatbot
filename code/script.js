@@ -3,6 +3,9 @@ const chat = document.getElementById('chat')
 const ageForm = document.getElementById('name-form')
 const ageInput = document.getElementById('name-input')
 const inputWrapper = document.getElementById('input-wrapper')
+const nameForm = document.getElementById('name-form2')
+const nameInput = document.getElementById('name-input2')
+
 
 // Global variables, if you need any, declared here
 
@@ -42,6 +45,23 @@ const greeting = () => {
   setTimeout(() => showMessage(`How old are you?`, 'bot'), 5000)
 }
 
+
+
+
+
+// QUESTION 3
+const grapeResponse = (event) => {
+showMessage("Such a sad story. He was later pressed into it anyway..", 'bot')
+inputWrapper.innerHTML = `
+<button id="omgButton">Omg, pour kid!</button>
+<button id="riesling">I guess everything happens for a riesling</button>
+`
+document.getElementById("omgButton").addEventListener('click', () => showMessage("Omg, pour kid!", 'user'))
+document.getElementById("riesling").addEventListener('click', () => showMessage("I guess everything happens for a riesling", 'user'))
+setTimeout(() => titanicQuestion(event), 5000)
+}
+
+
 // Question 2
 const grapeQuestion = (event) => {
   showMessage("Have you heard about the baby grape that didn't want to be made into wine?", 'bot')
@@ -51,7 +71,7 @@ const grapeQuestion = (event) => {
 `
   document.getElementById("yesButton").addEventListener('click', () => showMessage("Yes", 'user'))
   document.getElementById("noButton").addEventListener('click', () => showMessage("No", 'user'))
-
+setTimeout(() => grapeResponse(event), 5000)
 }
 
 // Question 1
@@ -64,11 +84,44 @@ setTimeout(() => showMessage(`Ah ok, ${userAge} and getting older huh. Well here
 setTimeout(() => grapeQuestion(event), 5000)
 }
 
+//QUESTION 4
+const titanicQuestion = (event) => {
+  
+  showMessage("Uhm... Yeah.. So what's your name? Titanic?", 'bot')
+  setTimeout(() => getNamething(event), 100)
+
+}
+
+//INPUT FOR QUESTION 4
+const getNamething = (event) => {
+  inputWrapper.innerHTML = `
+  <div class="input-wrapper2" id="input-wrapper2">
+  <form id="name-form2">
+    <input id="name-input2" type="text" />
+    <button id="sendName" class="send-btn2" type="submit">
+      Send
+    </button>
+  </form>
+</div>
+  `
+  setTimeout(() => handleNameInput(event), 100)
+}
+
+// NAME INPUT HANDLING
+const handleNameInput = (event) => {
+  event.preventDefault();
+  const userName = nameInput.value
+  showMessage(userName, 'user')
+  nameInput.value = ""
+  setTimeout(() => showMessage
+  (`So sorry ${userName}, that was a bad ice breaker.. I am a bit nervous about this job. I am just an actress after all.`, 'bot'), 2000)
+}
+
+
 // Set up your eventlisteners here
 
 ageForm.addEventListener('submit', handleAgeInput)
-
-
+nameForm.addEventListener('submit', handleNameInput)
 
 // When website loaded, chatbot asks first question.
 // normally we would invoke a function like this:
