@@ -39,14 +39,7 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
-const goodBye = (yes, no) => {
-  document.getElementById('yes').addEventListener('click', () => {
-    showMessage('There you go, buon appetito!', 'bot')
-    inputWrapper.innerHTML = ''
-  })
-  document.getElementById('no').addEventListener('click', () => location.reload())
-  inputWrapper.innerHTML = ''
-}
+
 
 const exitStrategy = (trade) => {
   showMessage(`Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`, 'bot')
@@ -54,11 +47,11 @@ const exitStrategy = (trade) => {
   <button id='yes' type='submit'>Yes, GET IN MY BELLY!</button>
   <button id='no' type='submit'>Hold on, let me change my order...</button>
 `
-  const yes = document.getElementById('yes')
-  const no = document.getElementById('no')
-  addEventListener('click', () => {
-    setTimeout(() => goodBye(yes, no), 1000)
+  document.getElementById('yes').addEventListener('click', () => {
+    showMessage('There you go, buon appetito!', 'bot')
+    inputWrapper.innerHTML = ''
   })
+  document.getElementById('no').addEventListener('click', () => window.location.reload())
 }
 
 const payment = (dish) => {
