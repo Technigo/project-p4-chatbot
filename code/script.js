@@ -5,13 +5,13 @@ const nameInput = document.getElementById('name-input')
 const inputWrapper = document.getElementById('input-wrapper')
 
 const exitHTML = `
-<button id='yes' type='submit'>Yes.</button>
-<button id='no' type='submit'>No.</button>
+<button id='yes' type='submit'>✔ Yes</button>
+<button id='no' type='submit'>❌ No</button>
 `
 const paymentHTML = `
-<button id='card' type='submit'>By card</button>
-<button id='cash' type='submit'>With cash</button>
-<button id='dishes' type='submit'>I'll do the dishes</button>
+<button id='card' type='submit'>💳 By card</button>
+<button id='cash' type='submit'>💸 With cash</button>
+<button id='dishes' type='submit'>🍽 I'll do the dishes</button>
 `
 const selectPizza = `
 <select id='select'>
@@ -38,17 +38,13 @@ const selectSalad = `
 </select>
 `
 const buttonSelectMain = `
-<button id='pizza' type='submit'>Pizza</button>
-<button id='pasta' type='submit'>Pasta</button>
-<button id='salad' type='submit'>Salad</button>
+<button id='pizza' type='submit'>🍕 Pizza</button>
+<button id='pasta' type='submit'>🧆 Pasta</button>
+<button id='salad' type='submit'>🥗 Salad</button>
 `
 // Global variables, if you need any, declared here
 
-
-
 // Functions declared here
-
-
 
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
@@ -77,118 +73,130 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight
 }
 
+// Interaction 7, win-win.
+// As bot, hand over food item to user and wish them a happy meal (what's the English phrase?)
 const done = () => {
-  showMessage('There you go, buon appetito!', 'bot')
+  showMessage('Here you go, buon appetito! Welcome back anytime you want!', 'bot')
 }
 
+// Interaction 6, final confirmation.
+// As bot, tell user they've chosen how to pay and that it's time to confirm wether to go through with order (if so: define, store & pass on decision), or to start over (go back to the beginning).
 const exitStrategy = (trade) => {
-  showMessage(`Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`, 'bot')
+  showMessage(
+    `Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`,
+    'bot')
   inputWrapper.innerHTML = exitHTML
+  
   const yes = document.getElementById('yes')
-    yes.addEventListener('click', () => {
+  yes.addEventListener('click', () => {
     showMessage(`Yup, GET IN MY BELLY!`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => done(yes), 1000)
   })
-  document.getElementById('no').addEventListener('click', () => {
+  document
+  .getElementById('no')
+  .addEventListener('click', () => {
     showMessage(`Let's start over, I need to change my order...`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => window.location.reload(), 1000)
   })
 }
 
+// Interaction 5, food decision has been made.
+// As bot, reinforce choice. Ask user for payment, and present options the user may choose from. Pass the choice of payment on.
 const payment = (dish) => {
-  showMessage(`Pristine choice! It'll be 100 SEK for your ${dish}. How would you like to pay?`, 'bot')
+  showMessage(
+    `Pristine choice! It'll be 100 SEK for your ${dish}. How would you like to pay?`,
+    'bot')
   inputWrapper.innerHTML = paymentHTML
-  document.getElementById('card').addEventListener('click', () => {
+  document
+  .getElementById('card')
+  .addEventListener('click', () => {
     showMessage(`Plastic (not so) fantastic.`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => exitStrategy('card'), 1000)
   })
-  document.getElementById('cash').addEventListener('click', () => {
-    showMessage(`I have a mint bill here for you.`, 'user')
+  document
+  .getElementById('cash')
+  .addEventListener('click', () => {
+    showMessage(`I have a mint bill here for you... 🤑`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => exitStrategy('cash'), 1000)
   })
-  document.getElementById('dishes').addEventListener('click', () => {
+  document
+  .getElementById('dishes')
+  .addEventListener('click', () => {
     showMessage(`See, I can't... But I'll do the dishes! Please?`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => exitStrategy('doing the dishes'), 1000)
   })
 }
 
-
-// Question 3
+// Interaction 4, choose what to eat.
+// As bot, confirm choice. Depending on choice, show specific menu the user may select as a drop-down. Pass the value of this choice on.
 const mainChoice = (specificChoice) => {
   if (specificChoice === 'pizza') {
-  showMessage(`Excellent, pizza's always a winner!`, 'bot')
+  showMessage(`Excellent, pizza's always a winner! Make your choice below.`, 'bot')
   inputWrapper.innerHTML = selectPizza
   } else if (specificChoice === 'pasta') {
-  showMessage(`Can't go wrong with a pasta!`, 'bot')
+  showMessage(`Can't go wrong with a pasta! Make your choice below.`, 'bot')
   inputWrapper.innerHTML = selectPasta
   } else {
-  showMessage(`Fresh, clean and tasty!`, 'bot')
+  showMessage(`Fresh, clean and tasty! Make your choice below.`, 'bot')
   inputWrapper.innerHTML = selectSalad
   }
   const dish = document.getElementById('select')
   addEventListener('change', () => {
-    showMessage(`I'll go with a ${dish.value}, thanks.`, 'user')
+    showMessage(`Okay. I'll go with a ${dish.value}, thanks.`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => payment(dish.value), 1000)
   })
 }
 
-
-// Question 2
+// Interaction 3, looking at the menu.
+// As bot, greet the user with their name. Then present the choices the user may select. Store choice and pass it on.
 const showMainOptions = (userName) => {
-  showMessage(`Nice to meet you, ${userName}. Which of our lovely main options would you like to choose?`, 'bot')
+  showMessage(
+    `Nice to meet you, ${userName}. Which of our lovely main options would you like to choose?`,
+    'bot')
   inputWrapper.innerHTML = buttonSelectMain
-  document.getElementById('pizza').addEventListener('click', () => {
+  document
+  .getElementById('pizza')
+  .addEventListener('click', () => {
     showMessage(`Let's see which pizzas you have!`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => mainChoice('pizza'), 1000)
   })
-  document.getElementById('pasta').addEventListener('click', () => {
-    showMessage(`I'd love some pasta.`, 'user')
+  document
+  .getElementById('pasta')
+  .addEventListener('click', () => {
+    showMessage(`I'd love me some pasta!`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => mainChoice('pasta'), 1000)
   })
-  document.getElementById('salad').addEventListener('click', () => {
-    showMessage(`Let's go for a salad`, 'user')
+  document
+  .getElementById('salad')
+  .addEventListener('click', () => {
+    showMessage(`Today I'll go with a salad.`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => mainChoice('salad'), 1000)
   })
 }
 
-// Question 1
+// Interaction 2, exchange names.
+// Use the stored name, and as user reply with name. Pass stored name on.
 const handleNameInput = (event) => {
   event.preventDefault()
   const name = nameInput.value
-  showMessage(`My name is ${nameInput.value}`, 'user')
+  showMessage(`My name is ${nameInput.value}.`, 'user')
   nameInput.value = ''
   setTimeout(() => showMainOptions(name), 1000)
 }
 
-// Introduction
-
+// Interaction 1, initial greeting.
+// Ask user for name, and store name. Wait 1 second before greeting user.
 const greeting = () => {
   showMessage(`Hello and welcome to Ziko's joint. What's your name?`, 'bot')
+  nameForm.addEventListener('submit', handleNameInput)
 }
-
 setTimeout(greeting, 1000)
-
-nameForm.addEventListener('submit', handleNameInput)
-
-
-
-
-
-// Set up your eventlisteners here:
-
-
-// When website loaded, chatbot asks first question.
-// normally we would invoke a function like this:
-// greeting()
-// But if we want to add a little delay to it, we can wrap it in a setTimeout:
-// setTimeout(functionName, timeToWaitInMilliSeconds)
-// This means the greeting function will be called one second after the website is loaded.
