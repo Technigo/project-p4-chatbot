@@ -62,19 +62,19 @@ const handleNameInput = (event) => {
   const answer1 = () => {
     showMessage("Hållbara aktier kanske passar dig!", "bot")
     inputwrapper.innerHTML = `
-    <button oncklick=("window.location.href='https://www.aktieinvest.se/hallbart-sparande/hallbara-aktier'")>Läs mer om hållbara aktier!</button>`
+    <button onclick="window.location.href=('https://www.aktieinvest.se/hallbart-sparande/hallbara-aktier')">Läs mer om hållbara aktier!</button>`
   }
 
   const answer2 = () => {
     showMessage("Hållbarhetsboxen kanske passar dig!", "bot")
     inputwrapper.innerHTML = `
-    <button oncklick=("window.location.href='https://www.aktieinvest.se/hallbarhetsboxen'")>Läs mer om hållbarhetsboxen!</button>`
+    <button onclick="window.location.href=('https://www.aktieinvest.se/hallbarhetsboxen')">Läs mer om hållbarhetsboxen!</button>`
   }
 
   const answer3 = () => {
     showMessage("Framtidsfeministens sparbox kanske passar dig!", "bot")
     inputwrapper.innerHTML = `
-    <button oncklick=("window.location.href='https://www.aktieinvest.se/framtidsfeministen'")>Läs mer om Framtidsfeministens sparbox!</button>`
+    <button onclick="window.location.href=('https://www.aktieinvest.se/framtidsfeministen')">Läs mer om Framtidsfeministens sparbox!</button>`
   }
 
 // This function will add a chat bubble in the correct place based on who the sender is

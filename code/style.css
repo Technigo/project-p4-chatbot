@@ -6,13 +6,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #55e66a;
+  background: #26bf76;
 }
 
 h1 {
   font-weight: bold;
   font-size: 44px;
-  line-height: 34px;
+  line-height: 50px;
   color: #fff;
   text-align: center;
 }
@@ -38,7 +38,7 @@ input {
   border: none;
   border-radius: 4px 0 0 4px;
   background: #e5e9ff;
-  color: #0026ff;
+  color: #0e3b5e;
   padding: 16px;
   font-size: 16px;
   font-family: 'Montserrat';
@@ -95,7 +95,7 @@ main {
   font-size: 16px;
   line-height: 26px;
   padding: 16px 24px;
-  color: #0026ff;
+  color: #0e3b5e;
   max-width: 40%;
 }
 
@@ -120,7 +120,7 @@ main {
 }
 
 button {
-  background-color: #0026ff;
+  background-color: #0e3b5e;
   color: white;
   border: none;
   border-radius: 4px;
