@@ -10,5 +10,5 @@ I changed the theme of the chat-bot from the template "pizza-ordering-bot", to a
 - "Interaction 7": I've missed something in the conditional statements (the few that I've written), so I always get the "else" result, no matter what's submitted in the chat.
 
 ## View it live
-
+https://wizardly-haibt-c3ed56.netlify.app/
 
