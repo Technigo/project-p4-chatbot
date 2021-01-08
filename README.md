@@ -1,13 +1,14 @@
-# Project Name
+# Charlie - The Dog-Bot
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This is a first attemt at creating a chat-bot, to practice JavaScript. It is based on a template from Technigo. The chat-bots purpose is to guide the user to what kind of dog breed he/she should have. 
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+I changed the theme of the chat-bot from the template "pizza-ordering-bot", to a "dog-bot", using the same logic but just another subject/theme. Or so I thought. My inexperience led me to create something that turned out to be quite complicated and time consuming for me to finish. This version of "Charlie - The Dog-Bot" is not final. There is the "monster" conditional statements harangue left to build. There are two problems left to solve in the code also:
+
+- "Interaction 6": Passing on the "live" function value so that it shows up correctly in the chat. (It show up as "citySuburd" now and it should show as "City/suburb".
+- "Interaction 7": I've missed something in the conditional statements (the few that I've written), so I always get the "else" result, no matter what's submitted in the chat.
 
 ## View it live
+https://wizardly-haibt-c3ed56.netlify.app/
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
