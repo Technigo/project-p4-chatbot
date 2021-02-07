@@ -43,10 +43,6 @@ const buttonSelectMain = `
 <button id='salad' type='submit'>🥗 Salad</button>
 `
 
-// Global variables, if you need any, declared here
-
-// Functions declared here
-
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
   if (sender === 'user') {
@@ -76,28 +72,28 @@ const showMessage = (message, sender) => {
 
 // Interaction 7, win-win.
 // As bot, hand over food item to user and wish them a happy meal (what's the English phrase?)
-const done = () => {
+const buonAppetito = () => {
   showMessage('Here you go, buon appetito! Welcome back anytime you want!', 'bot')
 }
 
 // Interaction 6, final confirmation.
 // As bot, tell user they've chosen how to pay and that it's time to confirm wether to go through with order (if so: define, store & pass on decision), or to start over (go back to the beginning).
-const exitStrategy = (trade) => {
+const askForConfirmation = choiceOfPayment => {
   showMessage(
-    `Okay, once payment by ${trade} is done, we'll have your meal ready in no time. You ready to go through?`,
+    `Okay, once payment by ${choiceOfPayment} is done, we'll have your meal ready in no time. You ready to go through?`,
     'bot')
   inputWrapper.innerHTML = exitHTML
-  
-  const yes = document.getElementById('yes')
-  yes.addEventListener('click', () => {
-    showMessage(`Yup, GET IN MY BELLY!`, 'user')
+  document
+  .getElementById('yes')
+  .addEventListener('click', () => {
+    showMessage('Yup, GET IN MY BELLY!', 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => done(yes), 1000)
+    setTimeout(() => buonAppetito(), 1000)
   })
   document
   .getElementById('no')
   .addEventListener('click', () => {
-    showMessage(`Let's start over, I need to change my order...`, 'user')
+    showMessage(`Let's start over, I need to change my order...'`, 'user')
     inputWrapper.innerHTML = ''
     setTimeout(() => window.location.reload(), 1000)
   })
@@ -105,58 +101,58 @@ const exitStrategy = (trade) => {
 
 // Interaction 5, food decision has been made.
 // As bot, reinforce choice. Ask user for payment, and present options the user may choose from. Pass the choice of payment on.
-const payment = (dish) => {
+const paymentOptions = choiceOfDish => {
   showMessage(
-    `Pristine choice! It'll be 100 SEK for your ${dish}. How would you like to pay?`,
+    `Pristine choice! It'll be 100 SEK for your ${choiceOfDish}. How would you like to pay?`,
     'bot')
   inputWrapper.innerHTML = paymentHTML
   document
   .getElementById('card')
   .addEventListener('click', () => {
-    showMessage(`Plastic (not so) fantastic.`, 'user')
+    showMessage('Plastic (not so) fantastic.', 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => exitStrategy('card'), 1000)
+    setTimeout(() => askForConfirmation('card'), 1000)
   })
   document
   .getElementById('cash')
   .addEventListener('click', () => {
-    showMessage(`I have a mint bill here for you... 🤑`, 'user')
+    showMessage('I have a mint bill here for you... 🤑', 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => exitStrategy('cash'), 1000)
+    setTimeout(() => askForConfirmation('cash'), 1000)
   })
   document
   .getElementById('dishes')
   .addEventListener('click', () => {
     showMessage(`See, I can't... But I'll do the dishes! Please?`, 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => exitStrategy('doing the dishes'), 1000)
+    setTimeout(() => askForConfirmation('doing the dishes'), 1000)
   })
 }
 
 // Interaction 4, choose what to eat.
 // As bot, confirm choice. Depending on choice, show specific menu the user may select as a drop-down. Pass the value of this choice on.
-const mainChoice = (specificChoice) => {
-  if (specificChoice === 'pizza') {
+const showSpecificOptions = finalChoice => {
+  if (finalChoice === 'pizza') {
   showMessage(`Excellent, pizza's always a winner! Make your choice below.`, 'bot')
   inputWrapper.innerHTML = selectPizza
-  } else if (specificChoice === 'pasta') {
+  } else if (finalChoice === 'pasta') {
   showMessage(`Can't go wrong with a pasta! Make your choice below.`, 'bot')
   inputWrapper.innerHTML = selectPasta
   } else {
-  showMessage(`Fresh, clean and tasty! Make your choice below.`, 'bot')
+  showMessage('Fresh, clean and tasty! Make your choice below.', 'bot')
   inputWrapper.innerHTML = selectSalad
   }
   const dish = document.getElementById('select')
   addEventListener('change', () => {
     showMessage(`Okay. I'll go with a ${dish.value}, thanks.`, 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => payment(dish.value), 1000)
+    setTimeout(() => paymentOptions(dish.value), 1000)
   })
 }
 
 // Interaction 3, looking at the menu.
 // As bot, greet the user with their name. Then present the choices the user may select. Store choice and pass it on.
-const showMainOptions = (userName) => {
+const showMainOptions = userName => {
   showMessage(
     `Nice to meet you, ${userName}. Which of our lovely main options would you like to choose?`,
     'bot')
@@ -180,13 +176,13 @@ const showMainOptions = (userName) => {
   .addEventListener('click', () => {
     showMessage(`Today I'll go with a salad.`, 'user')
     inputWrapper.innerHTML = ''
-    setTimeout(() => mainChoice('salad'), 1000)
+    setTimeout(() => showSpecificOptions('salad'), 1000)
   })
 }
 
 // Interaction 2, exchange names.
 // Use the stored name, and as user reply with name. Pass stored name on.
-const handleNameInput = (event) => {
+const handleNameInput = event => {
   event.preventDefault()
   const name = nameInput.value
   showMessage(`My name is ${nameInput.value}.`, 'user')
