@@ -1,8 +1,6 @@
 # Project Name
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This is a project is a chatbot from a course with Technigo. The focus was Js
 
 ## The problem
 
